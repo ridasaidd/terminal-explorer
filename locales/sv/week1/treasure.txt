@@ -1,0 +1,13 @@
+======================================
+GRATTIS
+======================================
+
+Du hittade det dolda valvet.
+
+VECKA 1 NYCKEL:
+
+THE_TERMINAL_IS_A_MAP
+
+Kör:
+
+./verify.sh THE_TERMINAL_IS_A_MAP

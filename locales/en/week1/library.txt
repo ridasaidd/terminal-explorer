@@ -1,0 +1,7 @@
+You stand among towering bookshelves.
+
+One book falls from a shelf.
+
+Inside is written:
+
+"Seek the passage hidden beyond the library."

@@ -1,0 +1,13 @@
+======================================
+CONGRATULATIONS
+======================================
+
+You discovered the hidden vault.
+
+WEEK 1 COMPLETION KEY:
+
+THE_TERMINAL_IS_A_MAP
+
+Run:
+
+./verify.sh THE_TERMINAL_IS_A_MAP

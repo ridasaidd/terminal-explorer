@@ -1,0 +1,13 @@
+======================================
+FELICIDADES
+======================================
+
+Has descubierto la bóveda oculta.
+
+CLAVE DE FINALIZACIÓN DE LA SEMANA 1:
+
+THE_TERMINAL_IS_A_MAP
+
+Ejecuta:
+
+./verify.sh THE_TERMINAL_IS_A_MAP
