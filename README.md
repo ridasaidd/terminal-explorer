@@ -135,8 +135,8 @@ ls -a
 Students are encouraged to maintain their own journal:
 
 ```text
-inventory/
-├── commands.txt
+backpack/
+├── spellbook.txt
 ├── achievements.txt
 ├── lore.txt
 ├── discoveries.txt
