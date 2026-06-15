@@ -27,18 +27,9 @@ SUPPORTED_LANGUAGES="en sv es ar"
 EXPECTED_KEY="THE_TERMINAL_IS_A_MAP"
 
 # Find the directory where this script is located.
-#
-# If this script is:
-#   terminal-explorer/weeks/week1.sh
-#
-# then SCRIPT_DIR becomes:
-#   terminal-explorer/weeks
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Find the root directory of the repository.
-#
-# Since week1.sh is inside the weeks/ directory,
-# the repo root is one directory above it.
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Course files are installed in the student's home directory.
@@ -47,22 +38,10 @@ COURSE_DIR="$HOME/terminal-explorer"
 # Week 1 files are installed here.
 WEEK_DIR="$COURSE_DIR/week1"
 
-# The Arabic rendering tool is stored inside the repo.
-ARA_BIN="$REPO_ROOT/bin/ara"
-
 ############################################################
 # LANGUAGE SELECTION
 ############################################################
 
-# If no language argument is provided, show a menu.
-#
-# Example:
-#   ./weeks/week1.sh
-#
-# If a language is provided, use it directly.
-#
-# Example:
-#   ./weeks/week1.sh sv
 if [ $# -eq 0 ]; then
     echo
     echo "Select language:"
@@ -128,27 +107,6 @@ for file in "${required_files[@]}"; do
     fi
 done
 
-# Arabic requires the ara tool for better right-to-left rendering.
-# The tool should exist in:
-#
-#   bin/ara
-#
-# We only require it when Arabic is selected.
-if [ "$LANGUAGE" = "ar" ]; then
-    if [ ! -x "$ARA_BIN" ]; then
-        echo
-        echo "Arabic language selected, but bin/ara is missing or not executable."
-        echo
-        echo "Expected:"
-        echo "$ARA_BIN"
-        echo
-        echo "Fix:"
-        echo "chmod +x bin/ara"
-        echo
-        exit 1
-    fi
-fi
-
 ############################################################
 # INSTALL WEEK 1
 ############################################################
@@ -169,8 +127,8 @@ echo "$LANGUAGE" > "$COURSE_DIR/language.txt"
 
 # Remove any previous Week 1 installation.
 #
-# This makes the script safe to run again if a student wants
-# to reset Week 1.
+# install.sh protects students from accidental resets by skipping
+# this script if Week 1 is already installed.
 rm -rf "$WEEK_DIR"
 
 # Create the directory structure for the mansion challenge.
@@ -191,61 +149,9 @@ cp "$LOCALE_DIR/install_complete.txt" "$WEEK_DIR/install_complete.txt"
 cp "$LOCALE_DIR/week1_complete.txt" "$WEEK_DIR/week1_complete.txt"
 
 ############################################################
-# CREATE VIEW HELPER
-############################################################
-
-# The view helper lets all students read files with one command:
-#
-#   ./view README.txt
-#
-# For most languages, it uses cat.
-# For Arabic, it uses bin/ara to render right-to-left text correctly.
-if [ "$LANGUAGE" = "ar" ]; then
-    cat > "$WEEK_DIR/view" << EOF
-#!/usr/bin/env bash
-
-# Arabic text needs special right-to-left rendering in many terminals.
-# This helper uses the ara tool stored in the course repository.
-
-set -euo pipefail
-
-ARA_BIN="$ARA_BIN"
-
-if [ "\${1:-}" = "" ]; then
-    echo "Usage: ./view <file>"
-    exit 1
-fi
-
-"\$ARA_BIN" -i "\$1"
-EOF
-else
-    cat > "$WEEK_DIR/view" << 'EOF'
-#!/usr/bin/env bash
-
-# For left-to-right languages, normal cat output is enough.
-
-set -euo pipefail
-
-if [ "${1:-}" = "" ]; then
-    echo "Usage: ./view <file>"
-    exit 1
-fi
-
-cat "$1"
-EOF
-fi
-
-chmod +x "$WEEK_DIR/view"
-
-############################################################
 # CREATE VERIFY SCRIPT
 ############################################################
 
-# This script is placed inside ~/terminal-explorer/week1.
-#
-# Students run it after they find the key:
-#
-#   ./verify.sh THE_TERMINAL_IS_A_MAP
 cat > "$WEEK_DIR/verify.sh" << 'EOF'
 #!/usr/bin/env bash
 
@@ -254,6 +160,9 @@ set -euo pipefail
 
 # The correct Week 1 key.
 EXPECTED_KEY="THE_TERMINAL_IS_A_MAP"
+
+# Root course directory.
+COURSE_DIR="$HOME/terminal-explorer"
 
 # Check whether the student supplied the correct key.
 if [ "${1:-}" != "$EXPECTED_KEY" ]; then
@@ -264,17 +173,18 @@ if [ "${1:-}" != "$EXPECTED_KEY" ]; then
     exit 1
 fi
 
-# Create a completion marker.
+# Create completion markers.
 #
-# Future weeks can check this file to confirm that Week 1
-# has been completed.
+# The root marker is used by install.sh to unlock future weeks.
+# The local marker is useful if the student explores this folder.
+touch "$COURSE_DIR/.week1-complete"
 touch .week1-complete
 
 echo
 
 # Display the localized completion message if it exists.
 if [ -s "./week1_complete.txt" ]; then
-    ./view ./week1_complete.txt
+    cat ./week1_complete.txt
 else
     echo "Week 1 complete."
     echo "You are ready for Week 2."
@@ -291,13 +201,16 @@ chmod +x "$WEEK_DIR/verify.sh"
 
 # Display the localized installation message if it exists.
 if [ -s "$WEEK_DIR/install_complete.txt" ]; then
-    "$WEEK_DIR/view" "$WEEK_DIR/install_complete.txt"
+    cat "$WEEK_DIR/install_complete.txt"
 else
     echo "Week 1 installed."
     echo
     echo "Start here:"
     echo "cd ~/terminal-explorer/week1"
-    echo "./view README.txt"
+    echo "cat README.txt"
+    echo
+    echo "Arabic students: if terminal text is hard to read, use:"
+    echo "code README.txt"
 fi
 
 echo

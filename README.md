@@ -1,195 +1,224 @@
 # Terminal Explorer
 
-Learn Linux, the command line, and Bash scripting through guided lessons, hands-on challenges, and real-world automation projects.
+Learn Linux through guided quests, challenges, and automation projects.
 
-## Overview
+Terminal Explorer is a story-driven Linux course where students explore **Blackthorn Manor**, an ancient estate connected to the mysterious **Terminal Realm**.
 
-Terminal Explorer is a beginner-friendly Linux course designed for students with little or no prior Linux experience.
+Instead of learning Linux commands in isolation, students learn by solving puzzles, uncovering secrets, and managing a growing estate.
 
-The course combines:
+---
 
-* Classroom instruction
-* Written lesson material
-* Interactive terminal challenges
-* Weekly progression
+# Features
+
+* Story-driven learning
+* Gamified Linux challenges
+* Multi-language support
+
+  * English
+  * Swedish
+  * Spanish
+  * Arabic
+* GitHub Codespaces compatible
+* Beginner-friendly
+* Progress tracking
 * Bash scripting projects
+* Hidden lore and Easter eggs
 
-Students learn by doing.
+---
 
-Rather than memorizing commands, students use them to solve problems, navigate environments, and complete missions.
+# Target Audience
 
-## Target Audience
-
-This course is intended for:
+Terminal Explorer is designed for:
 
 * Complete beginners
-* Students interested in IT
-* Future developers
-* Future system administrators
-* Linux enthusiasts
-* Anyone curious about the command line
+* Students with no Linux experience
+* Self-learners
+* Curious explorers
 
-No previous Linux experience is required.
+Recommended age:
 
-## Course Goals
+**18+**
+
+No prior programming knowledge is required.
+
+---
+
+# Course Structure
+
+| Week | Theme                     | Topics                     |
+| ---- | ------------------------- | -------------------------- |
+| 1    | The Mystery Mansion       | Navigation and exploration |
+| 2    | Restoration of the Estate | Files and directories      |
+| 3    | The Great Archives        | Search and discovery       |
+| 4    | Stewardship and Security  | Processes and permissions  |
+| 5    | Automation of the Estate  | Bash scripting             |
+
+---
+
+# Learning Objectives
 
 By the end of the course students should be able to:
 
-* Navigate a Linux filesystem
-* Work with files and directories
-* Search for information using command-line tools
-* Understand Linux permissions
-* Manage running processes
-* Use pipes and redirection
+* Navigate Linux filesystems
+* Create and manage files
+* Search and filter information
+* Understand permissions and processes
 * Write Bash scripts
 * Automate repetitive tasks
+* Maintain their own Linux environment
 
-## Course Structure
+---
 
-### Week 1 - Terminal Explorer
-
-Learn the fundamentals of the Linux command line.
-
-Topics:
-
-* pwd
-* ls
-* cd
-* cat
-* clear
-* history
-
-Challenge:
-
-Explore the Mystery Mansion and discover the hidden vault.
-
-### Week 2 - File Builder
-
-Learn how to create and manage files and directories.
-
-Topics:
-
-* mkdir
-* touch
-* cp
-* mv
-* rm
-* nano
-
-Challenge:
-
-Build and organize your digital inventory.
-
-### Week 3 - Search Detective
-
-Learn how to find information quickly.
-
-Topics:
-
-* grep
-* find
-* head
-* tail
-* less
-* wc
-
-Challenge:
-
-Search through thousands of files to uncover hidden clues.
-
-### Week 4 - System Operator
-
-Learn permissions and process management.
-
-Topics:
-
-* chmod
-* ps
-* kill
-* top
-
-Challenge:
-
-Defeat a rogue process and regain control of the system.
-
-### Week 5 - Bash Automator
-
-Learn how to write Bash scripts.
-
-Topics:
-
-* Variables
-* Conditionals
-* Loops
-* Functions
-* Shell scripts
-
-Challenge:
-
-Create an automated backup and reporting system.
-
-## Repository Structure
-
-```text
-bin/
-locales/
-lessons/
-resources/
-weeks/
-```
-
-### bin/
-
-Helper tools used by the course.
-
-### locales/
-
-Translations and challenge content.
-
-### lessons/
-
-Course material and student reading.
-
-### resources/
-
-Additional references and instructor notes.
-
-### weeks/
-
-Challenge installation scripts.
-
-## Getting Started
+# Quick Start
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ridasaidd/terminal-explorer.git
 cd terminal-explorer
 ```
+
+Run the installer:
+
+```bash
+./install.sh
+```
+
+The installer will:
+
+* Ask for your preferred language
+* Install available weeks
+* Save your progress
+* Prepare your learning environment
 
 Start Week 1:
 
 ```bash
-chmod +x weeks/week1.sh
-./weeks/week1.sh
+cd ~/terminal-explorer/week1
+cat README.txt
 ```
 
-Follow the instructions displayed on the screen.
+Arabic-speaking students may prefer opening files in VS Code:
 
-## Learning Philosophy
+```bash
+code README.txt
+```
 
-Students are encouraged to:
+---
 
-* Experiment
-* Make mistakes
-* Take notes
-* Ask questions
-* Practice commands repeatedly
+# Progress Tracking
 
-Memorization is not the goal.
+Terminal Explorer stores progress using hidden files:
 
-Understanding is.
+```text
+~/terminal-explorer/
+```
 
-The best way to learn Linux is to use Linux.
+Examples:
 
-Good luck, Explorer.
+```text
+.installed-week1
+.week1-complete
+language.txt
+```
+
+Hint:
+
+```bash
+ls -a
+```
+
+---
+
+# Student Journal
+
+Students are encouraged to maintain their own journal:
+
+```text
+inventory/
+├── commands.txt
+├── achievements.txt
+├── lore.txt
+├── discoveries.txt
+└── notes.txt
+```
+
+The journal belongs to the student.
+
+The course does not automatically manage it.
+
+Knowledge earned is knowledge kept.
+
+---
+
+# Repository Structure
+
+```text
+terminal-explorer/
+├── install.sh
+├── README.md
+├── bin/
+├── docs/
+├── lessons/
+├── locales/
+└── weeks/
+```
+
+## Directory Overview
+
+* `install.sh` — Main course installer
+* `docs/` — Design documents and story lore
+* `lessons/` — Educational material
+* `locales/` — Translated game text
+* `weeks/` — Weekly challenge installers
+* `bin/` — Optional helper tools
+
+---
+
+# Documentation
+
+* `docs/COURSE_DESIGN.md`
+* `docs/STORY.md`
+
+These documents define the architecture and lore of Blackthorn Manor.
+
+---
+
+# GitHub Codespaces
+
+Terminal Explorer is designed to run entirely in GitHub Codespaces during the beginner phase.
+
+Students can later transition to:
+
+* Virtual machines
+* Raspberry Pi
+* Personal Linux servers
+* Native Linux installations
+
+---
+
+# The World of Blackthorn Manor
+
+Blackthorn Manor exists in two worlds:
+
+1. The physical world
+2. The Terminal Realm
+
+Within the Terminal Realm:
+
+* Directories become rooms
+* Files become objects
+* Processes become spirits
+* Permissions become locks
+* Users become residents
+* Groups become factions
+
+The true treasure of Blackthorn Manor is knowledge.
+
+---
+
+# License
+
+Educational use encouraged.
+
+Explore wisely, steward.
