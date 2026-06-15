@@ -1,0 +1,17 @@
+SECRET DISCOVERY
+
+You found something hidden.
+
+In Linux, files that begin with a dot are hidden from normal ls.
+
+SECRET MODIFIER DISCOVERED:
+
+-a
+
+Use:
+
+ls -a
+
+Meaning:
+
+Show hidden files and directories.

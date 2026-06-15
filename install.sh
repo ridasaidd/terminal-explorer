@@ -1,30 +1,20 @@
 #!/usr/bin/env bash
 
-############################################################
-#
-# TERMINAL EXPLORER INSTALLER
-#
-# This script installs the course environment.
-#
-# It does not solve challenges.
-# It only prepares the weekly worlds.
-#
-############################################################
-
 set -euo pipefail
-
-COURSE_DIR="$HOME/terminal-explorer"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+if [ -d "/workspaces" ]; then
+    GAME_DIR="/workspaces/terminal-explorer-game"
+else
+    GAME_DIR="$HOME/terminal-explorer-game"
+fi
+
+GAME_LINK="$HOME/terminal-explorer"
 SUPPORTED_LANGUAGES="en sv es ar"
 
-############################################################
-# LANGUAGE SELECTION
-############################################################
-
-if [ -f "$COURSE_DIR/language.txt" ]; then
-    LANGUAGE="$(cat "$COURSE_DIR/language.txt")"
+if [ -f "$GAME_DIR/language.txt" ]; then
+    LANGUAGE="$(cat "$GAME_DIR/language.txt")"
     echo "Using saved language: $LANGUAGE"
 else
     echo
@@ -43,10 +33,7 @@ else
         2) LANGUAGE="sv" ;;
         3) LANGUAGE="es" ;;
         4) LANGUAGE="ar" ;;
-        *)
-            echo "Invalid choice: $CHOICE"
-            exit 1
-            ;;
+        *) echo "Invalid choice: $CHOICE"; exit 1 ;;
     esac
 fi
 
@@ -55,17 +42,39 @@ if [[ ! " $SUPPORTED_LANGUAGES " =~ " $LANGUAGE " ]]; then
     exit 1
 fi
 
-mkdir -p "$COURSE_DIR"
-echo "$LANGUAGE" > "$COURSE_DIR/language.txt"
+mkdir -p "$GAME_DIR"
+ln -sfn "$GAME_DIR" "$GAME_LINK"
+echo "$LANGUAGE" > "$GAME_DIR/language.txt"
 
-############################################################
-# INSTALL WEEK HELPER
-############################################################
+BACKPACK_DIR="$GAME_DIR/backpack"
+mkdir -p "$BACKPACK_DIR"
+
+create_backpack_file() {
+    local file_path="$1"
+    local title="$2"
+
+    if [ ! -f "$file_path" ]; then
+        cat > "$file_path" << EOF
+$title
+$(printf '=%.0s' $(seq 1 ${#title}))
+
+This file belongs to you.
+
+Use it to record what you discover during Terminal Explorer.
+EOF
+    fi
+}
+
+create_backpack_file "$BACKPACK_DIR/spellbook.txt" "SPELLBOOK"
+create_backpack_file "$BACKPACK_DIR/journal.txt" "EXPLORER JOURNAL"
+create_backpack_file "$BACKPACK_DIR/achievements.txt" "ACHIEVEMENTS"
+create_backpack_file "$BACKPACK_DIR/lore.txt" "LORE"
+create_backpack_file "$BACKPACK_DIR/discoveries.txt" "DISCOVERIES"
 
 install_week() {
     local week_number="$1"
-    local week_script="$SCRIPT_DIR/weeks/week${week_number}.sh"
-    local marker_file="$COURSE_DIR/.installed-week${week_number}"
+    local week_script="$SCRIPT_DIR/weeks/week${week_number}/install.sh"
+    local marker_file="$GAME_DIR/.installed-week${week_number}"
 
     if [ -f "$marker_file" ]; then
         echo "Week $week_number already installed. Skipping."
@@ -83,18 +92,19 @@ install_week() {
     "$week_script" "$LANGUAGE"
 
     touch "$marker_file"
-
     echo "Week $week_number installed."
 }
-
-############################################################
-# INSTALL AVAILABLE WEEKS
-############################################################
 
 install_week 1
 
 echo
 echo "Installation complete."
+echo
+echo "Game files installed here:"
+echo "$GAME_DIR"
+echo
+echo "Shortcut:"
+echo "$GAME_LINK"
 echo
 echo "Start here:"
 echo "cd ~/terminal-explorer/week1"

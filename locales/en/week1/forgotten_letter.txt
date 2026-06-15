@@ -1,0 +1,10 @@
+FORGOTTEN LETTER
+
+If you found this place, you have learned that some paths are hidden.
+
+The manor rewards explorers who look beneath the surface.
+
+Remember:
+
+ls shows what is visible.
+ls -a reveals what is hidden.
