@@ -1,0 +1,10 @@
+BORTGLÖMT BREV
+
+Om du hittade den här platsen har du lärt dig att vissa stigar är gömda.
+
+Herrgården belönar upptäcktsresande som tittar under ytan.
+
+Kom ihåg:
+
+ls visar vad som är synligt.
+ls -a avslöjar vad som är gömt.

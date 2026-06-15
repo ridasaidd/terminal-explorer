@@ -1,0 +1,17 @@
+HEMLIG UPPTÄCKT
+
+Du hittade något gömt.
+
+I Linux är filer som börjar med en punkt dolda från vanliga ls.
+
+HEMLIG MODIFIERARE UPPTÄCKT:
+
+-a
+
+Användning:
+
+ls -a
+
+Betydelse:
+
+Visa dolda filer och kataloger.

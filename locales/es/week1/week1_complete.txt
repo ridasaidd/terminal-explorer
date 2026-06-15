@@ -1,0 +1,21 @@
+=======================================
+SEMANA 1 COMPLETADA
+=======================================
+
+La Mansión Blackthorn te ha aceptado como explorador.
+
+Has aprendido a:
+
+- Encontrar tu ubicación actual
+- Listar archivos y directorios cercanos
+- Navegar entre directorios
+- Leer archivos de texto
+- Revisar tu historial de comandos
+
+La primera lección ha finalizado.
+
+La mansión no es solo un lugar.
+
+Es un sistema.
+
+Estás listo para la Semana 2.

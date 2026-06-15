@@ -1,0 +1,11 @@
+CARTA OLVIDADA
+
+Si has encontrado este lugar, has aprendido que algunos caminos están ocultos.
+
+La mansión recompensa a los exploradores que miran más allá de las apariencias.
+
+Recuerda:
+
+ls muestra lo visible.
+
+ls -a revela lo oculto.

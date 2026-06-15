@@ -1,0 +1,17 @@
+DESCUBRIMIENTO SECRETO
+
+Encontraste algo oculto.
+
+En Linux, los archivos que comienzan con un punto están ocultos para el comando `ls` normal.
+
+MODIFICADOR SECRETO DESCUBIERTO:
+
+-a
+
+Uso:
+
+ls -a
+
+Significado:
+
+Muestra archivos y directorios ocultos.

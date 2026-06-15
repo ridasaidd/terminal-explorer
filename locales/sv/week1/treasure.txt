@@ -1,13 +1,32 @@
 ======================================
-GRATTIS
+DET DOLDA VALVET
 ======================================
 
-Du hittade det dolda valvet.
+Du har nått det dolda valvet i Blackthorn Manor.
 
-VECKA 1 NYCKEL:
+Inuti hittar du ett förseglat brev från den siste förvaltaren.
+
+Det lyder:
+
+"Upptäcktsresande,
+
+Om du läser detta har du lärt dig den första läxan.
+
+Du vet hur man frågar:
+
+Var är jag?
+Vad finns här?
+Vart kan jag gå?
+Vad säger detta?
+
+Dessa frågor är början på all systemkunskap.
+
+Herrgården känner nu igen dig.
+
+Din nyckel för att slutföra vecka 1 är:
 
 THE_TERMINAL_IS_A_MAP
 
-Kör:
+Återgå till vecka 1-katalogen och kör:
 
 ./verify.sh THE_TERMINAL_IS_A_MAP

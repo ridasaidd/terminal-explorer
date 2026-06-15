@@ -1,13 +1,32 @@
-======================================
-FELICIDADES
-======================================
+=======================================
+LA BÓVEDA OCULTA
+=======================================
 
-Has descubierto la bóveda oculta.
+Has llegado a la bóveda oculta de la Mansión Blackthorn.
 
-CLAVE DE FINALIZACIÓN DE LA SEMANA 1:
+Dentro, encontrarás una carta sellada del Último Mayordomo.
+
+Dice:
+
+"Explorador,
+
+Si estás leyendo esto, has aprendido la primera lección.
+
+Sabes preguntar:
+
+¿Dónde estoy?
+¿Qué hay aquí?
+¿Adónde puedo ir?
+¿Qué dice esto?
+
+Estas preguntas son el comienzo de todo conocimiento del sistema.
+
+La mansión ahora te reconoce.
+
+Tu clave de finalización de la Semana 1 es:
 
 THE_TERMINAL_IS_A_MAP
 
-Ejecuta:
+Regresa al directorio de la Semana 1 y ejecuta:
 
 ./verify.sh THE_TERMINAL_IS_A_MAP

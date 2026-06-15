@@ -1,5 +1,17 @@
-El polvo cubre los muebles.
+El polvo cubre la cama.
 
-Encuentras una entrada de diario:
+Dentro de un cajón encuentras una página rota de un diario.
 
-"El conocimiento revela caminos ocultos."
+Diario del Último Mayordomo:
+
+«Antes creía que la mansión estaba construida de piedra y madera.
+
+Me equivocaba.
+
+Las paredes obedecen reglas.
+
+Las puertas siguen patrones.
+
+La finca no es un lugar.
+
+Es un sistema.»
