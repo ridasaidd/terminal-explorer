@@ -1,116 +1,210 @@
 # STORY – Blackthorn Manor
 
-## Premise
+## Prologue
 
-The explorer receives an unexpected inheritance:
+Long before modern computers, there existed a place known only to a few scholars:
 
-Blackthorn Manor.
+**Blackthorn Manor**.
 
-An ancient estate hidden from the modern world.
+An ancient estate hidden beyond ordinary maps.
 
-Rumors speak of strange events, hidden chambers, and forgotten knowledge.
+Legends say the manor was built by architects who believed that knowledge itself possessed power.
 
-The previous owner disappeared many years ago.
+The manor was unlike any other structure.
 
-Only one thing remains active:
+Rooms could shift.
 
-A terminal connected to the manor's mysterious systems.
+Passages appeared and disappeared.
 
-The explorer quickly learns that the estate itself behaves like a living filesystem.
+Doors obeyed strange rules.
 
-Directories are rooms.
+Those who understood its language could shape the estate itself.
 
-Files are objects.
+Those who did not remained forever lost.
 
-Processes become spirits.
+Over centuries, the manor passed from steward to steward.
 
-Permissions become locks.
+Each left behind journals, notes, and discoveries.
 
-Knowledge itself becomes treasure.
+Many entered.
+
+Few mastered it.
+
+Some never left.
 
 ---
 
 ## The Terminal Realm
 
-Blackthorn Manor exists simultaneously in two worlds:
+Blackthorn Manor exists in two worlds simultaneously:
 
 1. The physical world.
 2. The Terminal Realm.
 
-Actions performed in the terminal affect the estate.
+The Terminal Realm is an invisible layer that governs the estate.
 
-The explorer must learn the language of Linux to uncover its secrets.
+Within this realm:
 
----
+* Directories become rooms.
+* Files become objects.
+* Permissions become locks.
+* Processes become spirits.
+* Users become residents.
+* Groups become factions.
+* Links become portals.
+* Variables become ancient forces.
 
-## The Previous Steward
+The only way to communicate with the Terminal Realm is through a mysterious device:
 
-Little is known about the last steward.
-
-Scattered journals suggest that they uncovered something hidden beneath the manor.
-
-Some believe they vanished.
-
-Others believe they became part of the estate itself.
-
-Their writings remain hidden throughout the filesystem.
-
----
-
-## The Curse
-
-The manor is afflicted by an ancient curse.
-
-The curse manifests itself as:
-
-* Hidden files
-* Locked chambers
-* Rogue processes
-* Corrupted logs
-* Lost records
-
-Only knowledge can break the curse.
+**The Terminal**.
 
 ---
 
-## Factions
+## The Explorer
 
-Possible factions:
+The player is known simply as:
+
+**The Explorer**.
+
+One day, without warning, a letter arrives.
+
+The envelope bears no address.
+
+Only a seal:
+
+A black thorn enclosed within a circle.
+
+Inside is a single sentence:
+
+> "Blackthorn Manor is now yours."
+
+Attached is a key and a set of strange instructions.
+
+The journey begins.
+
+---
+
+## The Last Steward
+
+The identity of the previous steward remains unknown.
+
+Scattered throughout the estate are fragments of their journals.
+
+Their writings speak of strange discoveries:
+
+* Hidden rooms
+* Ancient factions
+* Invisible forces
+* A great archive beneath the manor
+
+Their final entry reads:
+
+> "The manor is not a place.
+>
+> It is a system."
+
+After this entry, the journals abruptly end.
+
+No record exists of what happened next.
+
+---
+
+## The Curse of Entropy
+
+The greatest threat to Blackthorn Manor is not evil.
+
+It is entropy.
+
+Knowledge fades.
+
+Records become corrupted.
+
+Rooms are forgotten.
+
+Processes wander endlessly.
+
+Permissions decay.
+
+The role of the steward is not to conquer.
+
+It is to maintain order.
+
+To understand systems.
+
+To preserve knowledge.
+
+---
+
+## The Four Factions
+
+Over centuries, four groups emerged within the manor.
 
 ### The Scholars
 
-Archivists dedicated to preserving knowledge.
+Archivists and historians.
+
+They preserve knowledge.
+
+Their symbol is the open book.
+
+---
 
 ### The Hunters
 
 Protectors of the estate.
 
+They track rogue spirits and corrupted processes.
+
+Their symbol is the lantern.
+
+---
+
 ### The Engineers
 
 Masters of automation.
 
+They build mechanisms that operate without supervision.
+
+Their symbol is the gear.
+
+---
+
 ### The Keepers
 
-Guardians of ancient secrets.
+Guardians of the deepest secrets.
+
+Few know of their existence.
+
+Their symbol is the key.
 
 ---
 
 ## The Explorer's Journal
 
-Every explorer maintains their own journal.
+Every steward maintains a journal.
 
-The journal belongs to the student.
+The manor never writes in it.
 
-The estate never writes to it.
+Knowledge must be earned.
 
-Knowledge earned is knowledge kept.
+The journal belongs to the explorer alone.
+
+Some use paper.
+
+Others use files.
+
+Wise stewards keep backups.
 
 ---
 
-## The Final Truth
+## The Great Principle
+
+The scholars teach a simple truth:
+
+> Knowledge preserved is knowledge multiplied.
 
 The true treasure of Blackthorn Manor is not gold.
 
-It is mastery over systems.
+It is understanding.
 
 Those who understand systems shape the world around them.
