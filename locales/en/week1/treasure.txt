@@ -1,13 +1,32 @@
 ======================================
-CONGRATULATIONS
+THE HIDDEN VAULT
 ======================================
 
-You discovered the hidden vault.
+You have reached the hidden vault of Blackthorn Manor.
 
-WEEK 1 COMPLETION KEY:
+Inside, you find a sealed letter from the Last Steward.
+
+It reads:
+
+"Explorer,
+
+If you are reading this, you have learned the first lesson.
+
+You know how to ask:
+
+Where am I?
+What is here?
+Where can I go?
+What does this say?
+
+These questions are the beginning of all system knowledge.
+
+The manor now recognizes you.
+
+Your Week 1 completion key is:
 
 THE_TERMINAL_IS_A_MAP
 
-Run:
+Return to the Week 1 directory and run:
 
 ./verify.sh THE_TERMINAL_IS_A_MAP

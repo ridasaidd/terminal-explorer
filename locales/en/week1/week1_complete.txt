@@ -1,0 +1,21 @@
+======================================
+WEEK 1 COMPLETE
+======================================
+
+Blackthorn Manor has accepted you as an explorer.
+
+You have learned how to:
+
+- Find your current location
+- List nearby files and directories
+- Move between directories
+- Read text files
+- Review your command history
+
+The first lesson is complete.
+
+The manor is not only a place.
+
+It is a system.
+
+You are ready for Week 2.

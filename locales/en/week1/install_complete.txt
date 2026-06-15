@@ -1,0 +1,14 @@
+Week 1 has been installed.
+
+Your journey begins at Blackthorn Manor.
+
+Start here:
+
+cd ~/terminal-explorer/week1
+cat README.txt
+
+Arabic-speaking students:
+
+If Arabic text is difficult to read in the terminal, open files in VS Code:
+
+code README.txt

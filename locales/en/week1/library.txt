@@ -1,7 +1,17 @@
-You stand among towering bookshelves.
+The library is larger than it should be.
 
-One book falls from a shelf.
+Shelves vanish into darkness.
+
+A book lies open on a reading table.
 
 Inside is written:
 
-"Seek the passage hidden beyond the library."
+"The Terminal Realm mirrors the manor.
+
+Directories are rooms.
+
+Files are objects.
+
+Those who can read the realm can understand the estate."
+
+A narrow passage waits beyond the shelves.
