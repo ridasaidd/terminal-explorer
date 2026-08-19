@@ -1,17 +1,11 @@
-Dust covers the bed.
+THE BEDROOM
 
-Inside a drawer you find a torn journal page.
+A narrow bed faces a shuttered window.
+Dust covers everything except the floor near the doorway.
 
-Journal of the Last Steward:
+You have explored more than one room now.
 
-"I once believed the manor was built from stone and wood.
+Look around without being told which command to use.
+Then return to the mansion and continue exploring.
 
-I was wrong.
-
-The walls obey rules.
-
-The doors follow patterns.
-
-The estate is not a place.
-
-It is a system."
+Hint, if you need it: .. means the parent directory.

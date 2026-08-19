@@ -1,17 +1,13 @@
-The library is larger than it should be.
+THE LIBRARY
 
-Shelves vanish into darkness.
+Tall shelves crowd the walls.
+A reading desk sits beneath a dead lamp.
 
-A book lies open on a reading table.
+Something about this room feels different.
 
-Inside is written:
+Look around carefully.
+Not everything in Linux is visible with the simplest listing.
 
-"The Terminal Realm mirrors the manor.
+If you want a hint, try asking ls to show all entries.
 
-Directories are rooms.
-
-Files are objects.
-
-Those who can read the realm can understand the estate."
-
-A narrow passage waits beyond the shelves.
+When you discover another path, follow it.

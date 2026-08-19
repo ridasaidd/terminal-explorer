@@ -1,0 +1,42 @@
+BLACKTHORN MANOR — STEWARD'S OFFICE
+
+Morning light falls across a desk covered in repair orders.
+A new part of the estate has opened, but the east corridor still needs restoration.
+
+You are in the service wing.
+
+First orient yourself:
+
+pwd
+ls
+
+Your first task is elsewhere in the manor:
+
+ground_floor/east_corridor/restoration_zone
+
+Find a route there.
+
+Remember:
+
+.. means one level up.
+~ means your home directory.
+
+When you reach the restoration zone, create a new room named:
+
+restored_room
+
+Use:
+
+mkdir restored_room
+
+Verify the change with ls.
+
+Enter the new room and create an empty inventory file:
+
+touch inventory.txt
+
+Verify again.
+
+Then return to the service wing and inspect the workshop.
+
+You may choose a relative path or a path beginning with ~/terminal-explorer/manor/.

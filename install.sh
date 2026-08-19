@@ -11,34 +11,12 @@ else
 fi
 
 GAME_LINK="$HOME/terminal-explorer"
-SUPPORTED_LANGUAGES="en sv es ar"
+LANGUAGE="en"
+REQUESTED_WEEK="${1:-1}"
 
-if [ -f "$GAME_DIR/language.txt" ]; then
-    LANGUAGE="$(cat "$GAME_DIR/language.txt")"
-    echo "Using saved language: $LANGUAGE"
-else
-    echo
-    echo "Select language:"
-    echo
-    echo "1) English (en)"
-    echo "2) Swedish (sv)"
-    echo "3) Spanish (es)"
-    echo "4) Arabic (ar)"
-    echo
-
-    read -rp "Choice [1-4]: " CHOICE
-
-    case "$CHOICE" in
-        1) LANGUAGE="en" ;;
-        2) LANGUAGE="sv" ;;
-        3) LANGUAGE="es" ;;
-        4) LANGUAGE="ar" ;;
-        *) echo "Invalid choice: $CHOICE"; exit 1 ;;
-    esac
-fi
-
-if [[ ! " $SUPPORTED_LANGUAGES " =~ " $LANGUAGE " ]]; then
-    echo "Unsupported language: $LANGUAGE"
+if ! [[ "$REQUESTED_WEEK" =~ ^[0-9]+$ ]] || [ "$REQUESTED_WEEK" -lt 1 ]; then
+    echo "Usage: ./install.sh [week-number]"
+    echo "Example: ./install.sh 2"
     exit 1
 fi
 
@@ -59,17 +37,15 @@ $title
 $(printf '=%.0s' $(seq 1 ${#title}))
 
 This file belongs to you.
-
-Use it to record what you discover during Terminal Explorer.
+Use it however you find useful while exploring Terminal Explorer.
 EOF
     fi
 }
 
-create_backpack_file "$BACKPACK_DIR/spellbook.txt" "SPELLBOOK"
+create_backpack_file "$BACKPACK_DIR/commands.txt" "COMMAND NOTES"
 create_backpack_file "$BACKPACK_DIR/journal.txt" "EXPLORER JOURNAL"
-create_backpack_file "$BACKPACK_DIR/achievements.txt" "ACHIEVEMENTS"
-create_backpack_file "$BACKPACK_DIR/lore.txt" "LORE"
 create_backpack_file "$BACKPACK_DIR/discoveries.txt" "DISCOVERIES"
+create_backpack_file "$BACKPACK_DIR/notes.txt" "NOTES"
 
 install_week() {
     local week_number="$1"
@@ -77,36 +53,52 @@ install_week() {
     local marker_file="$GAME_DIR/.installed-week${week_number}"
 
     if [ -f "$marker_file" ]; then
-        echo "Week $week_number already installed. Skipping."
+        echo "Week $week_number already installed."
         return
     fi
 
-    if [ ! -x "$week_script" ]; then
-        echo "Week $week_number script not found or not executable:"
+    if [ ! -f "$week_script" ]; then
+        echo "Week $week_number installer not found:"
         echo "$week_script"
-        return
+        exit 1
+    fi
+
+    if [ "$week_number" -gt 1 ] && [ ! -f "$GAME_DIR/.installed-week$((week_number - 1))" ]; then
+        echo "Install and complete the earlier week before extending the manor."
+        echo "Run: ./install.sh $((week_number - 1))"
+        exit 1
     fi
 
     echo
     echo "Installing Week $week_number..."
-    "$week_script" "$LANGUAGE"
-
+    bash "$week_script" "$LANGUAGE"
     touch "$marker_file"
     echo "Week $week_number installed."
 }
 
-install_week 1
+install_week "$REQUESTED_WEEK"
 
 echo
-echo "Installation complete."
+echo "======================================"
+echo " TERMINAL EXPLORER"
+echo "======================================"
 echo
-echo "Game files installed here:"
-echo "$GAME_DIR"
+echo "Blackthorn Manor is ready."
+echo "Active course language: English."
 echo
-echo "Shortcut:"
-echo "$GAME_LINK"
-echo
-echo "Start here:"
-echo "cd ~/terminal-explorer/week1"
-echo "cat README.txt"
+
+if [ "$REQUESTED_WEEK" -eq 1 ]; then
+    echo "Begin Week 1 here:"
+    echo "cd ~/terminal-explorer/manor/ground_floor/entrance_hall"
+    echo "cat clue.txt"
+    echo
+    echo "When it is time to extend the manor for Week 2:"
+    echo "./install.sh 2"
+elif [ "$REQUESTED_WEEK" -eq 2 ]; then
+    echo "The service wing and restoration zone are now open."
+    echo "Begin Week 2 here:"
+    echo "cd ~/terminal-explorer/manor/service_wing/steward_office"
+    echo "cat clue.txt"
+fi
+
 echo

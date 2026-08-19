@@ -1,0 +1,14 @@
+BLACKTHORN MANOR — ARCHIVE
+
+Rows of labelled shelves line the walls.
+Records belong here only if they have been preserved correctly.
+
+Inspect this room.
+
+You should find:
+
+blueprint.txt
+
+Then return to the workshop and confirm that the original blueprint still exists there too.
+
+If both copies exist, you have demonstrated the central difference between copying and moving.

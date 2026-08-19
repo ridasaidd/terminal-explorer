@@ -1,15 +1,10 @@
-The kitchen is cold, but untouched.
+THE KITCHEN
 
-A cracked cup rests beside an old note.
+Cold air hangs over a long stone counter.
+There is nothing important here, but you have moved farther into the manor.
 
-It reads:
+Before you leave, confirm where you are.
 
-"Not every room contains treasure.
+Use the command you learned for showing your current location.
 
-Some rooms exist to teach you how to move."
-
-You have learned something important:
-
-The manor is not only a place.
-
-It is a system.
+Then look around and decide where to go next.

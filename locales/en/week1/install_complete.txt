@@ -1,14 +1,13 @@
-Week 1 has been installed.
+WEEK 1 INSTALLED — ARRIVAL
 
-Your journey begins at Blackthorn Manor.
+Blackthorn Manor is ready.
 
-Start here:
+Enter the first room:
 
-cd ~/terminal-explorer/week1
-cat README.txt
+cd ~/terminal-explorer/manor/ground_floor/entrance_hall
 
-Arabic-speaking students:
+Then read what you find there:
 
-If Arabic text is difficult to read in the terminal, open files in VS Code:
+cat clue.txt
 
-code README.txt
+The manor will remain in place and later weeks will extend it.

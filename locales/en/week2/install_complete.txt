@@ -1,0 +1,12 @@
+WEEK 2 INSTALLED — RESTORATION OF THE ESTATE
+
+The service wing and restoration zone are now open inside the same Blackthorn Manor.
+
+Begin here:
+
+cd ~/terminal-explorer/manor/service_wing/steward_office
+cat clue.txt
+
+Remember:
+
+OBSERVE → PREDICT → CHANGE → VERIFY

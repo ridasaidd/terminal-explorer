@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-SUPPORTED_LANGUAGES="en sv es ar"
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WEEKS_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_ROOT="$(cd "$WEEKS_DIR/.." && pwd)"
@@ -16,27 +14,13 @@ fi
 
 GAME_LINK="$HOME/terminal-explorer"
 WEEK_DIR="$GAME_DIR/week1"
-
-if [ $# -eq 0 ]; then
-    LANGUAGE="en"
-else
-    LANGUAGE="$1"
-fi
-
-if [[ ! " $SUPPORTED_LANGUAGES " =~ " $LANGUAGE " ]]; then
-    echo "Unsupported language: $LANGUAGE"
-    exit 1
-fi
-
-LOCALE_DIR="$REPO_ROOT/locales/$LANGUAGE/week1"
-
-if [ ! -d "$LOCALE_DIR" ]; then
-    echo "Missing locale directory: $LOCALE_DIR"
-    exit 1
-fi
+MANOR="$GAME_DIR/manor"
+LANGUAGE="en"
+LOCALE_DIR="$REPO_ROOT/locales/en/week1"
 
 required_files=(
     "README.txt"
+    "entrance_hall.txt"
     "kitchen.txt"
     "bedroom.txt"
     "library.txt"
@@ -48,51 +32,120 @@ required_files=(
 
 for file in "${required_files[@]}"; do
     if [ ! -f "$LOCALE_DIR/$file" ]; then
-        echo "Missing locale file: $LOCALE_DIR/$file"
+        echo "Missing Chapter 1 content: $LOCALE_DIR/$file"
         exit 1
     fi
 done
 
-echo
-echo "======================================"
-echo " TERMINAL EXPLORER - WEEK 1"
-echo "======================================"
-echo
-echo "Installing Week 1 using language: $LANGUAGE"
-echo
-
 mkdir -p "$GAME_DIR"
 ln -sfn "$GAME_DIR" "$GAME_LINK"
 echo "$LANGUAGE" > "$GAME_DIR/language.txt"
+mkdir -p "$WEEK_DIR"
 
-rm -rf "$WEEK_DIR"
+# Week 1 establishes the persistent manor. Do not destroy an existing manor,
+# because later weeks and student work extend this same filesystem world.
+mkdir -p "$MANOR/ground_floor/entrance_hall/cloakroom"
+mkdir -p "$MANOR/ground_floor/entrance_hall/terminal_study"
+mkdir -p "$MANOR/ground_floor/west_corridor/kitchen/pantry"
+mkdir -p "$MANOR/ground_floor/west_corridor/dining_room"
+mkdir -p "$MANOR/ground_floor/east_corridor/bedroom/dressing_room"
+mkdir -p "$MANOR/ground_floor/east_corridor/library/reading_room"
+mkdir -p "$MANOR/ground_floor/east_corridor/library/archives/family_records"
+mkdir -p "$MANOR/ground_floor/east_corridor/library/archives/estate_records"
+mkdir -p "$MANOR/ground_floor/east_corridor/library/secret_passage/old_staircase/vault"
+mkdir -p "$MANOR/upper_floor/gallery"
+mkdir -p "$MANOR/upper_floor/guest_wing"
+mkdir -p "$MANOR/upper_floor/observatory"
+mkdir -p "$MANOR/underground/cellar"
+mkdir -p "$MANOR/underground/old_tunnel"
+mkdir -p "$MANOR/.old_wing"
 
-mkdir -p "$WEEK_DIR/mansion/entrance_hall"
-mkdir -p "$WEEK_DIR/mansion/kitchen"
-mkdir -p "$WEEK_DIR/mansion/bedroom"
-mkdir -p "$WEEK_DIR/mansion/library/secret_passage/vault"
-mkdir -p "$WEEK_DIR/mansion/observatory"
-mkdir -p "$WEEK_DIR/mansion/.old_wing"
-
+# Week-specific orientation remains outside the playable manor.
 cp "$LOCALE_DIR/README.txt" "$WEEK_DIR/README.txt"
-cp "$LOCALE_DIR/kitchen.txt" "$WEEK_DIR/mansion/kitchen/clue.txt"
-cp "$LOCALE_DIR/bedroom.txt" "$WEEK_DIR/mansion/bedroom/clue.txt"
-cp "$LOCALE_DIR/library.txt" "$WEEK_DIR/mansion/library/clue.txt"
-cp "$LOCALE_DIR/secret_passage.txt" "$WEEK_DIR/mansion/library/secret_passage/clue.txt"
-cp "$LOCALE_DIR/treasure.txt" "$WEEK_DIR/mansion/library/secret_passage/vault/treasure.txt"
+cp "$LOCALE_DIR/week1_complete.txt" "$WEEK_DIR/week1_complete.txt"
+cp "$LOCALE_DIR/install_complete.txt" "$WEEK_DIR/install_complete.txt"
+
+# Core playable clues are distributed through the larger map.
+cp "$LOCALE_DIR/entrance_hall.txt" "$MANOR/ground_floor/entrance_hall/clue.txt"
+cp "$LOCALE_DIR/kitchen.txt" "$MANOR/ground_floor/west_corridor/kitchen/clue.txt"
+cp "$LOCALE_DIR/bedroom.txt" "$MANOR/ground_floor/east_corridor/bedroom/clue.txt"
+cp "$LOCALE_DIR/library.txt" "$MANOR/ground_floor/east_corridor/library/clue.txt"
+cp "$LOCALE_DIR/secret_passage.txt" "$MANOR/ground_floor/east_corridor/library/secret_passage/clue.txt"
+cp "$LOCALE_DIR/treasure.txt" "$MANOR/ground_floor/east_corridor/library/secret_passage/old_staircase/vault/treasure.txt"
 
 if [ -f "$LOCALE_DIR/library_hidden_note.txt" ]; then
-    cp "$LOCALE_DIR/library_hidden_note.txt" "$WEEK_DIR/mansion/library/.hidden_note.txt"
+    cp "$LOCALE_DIR/library_hidden_note.txt" "$MANOR/ground_floor/east_corridor/library/.hidden_note.txt"
 fi
 
 if [ -f "$LOCALE_DIR/forgotten_letter.txt" ]; then
-    cp "$LOCALE_DIR/forgotten_letter.txt" "$WEEK_DIR/mansion/.old_wing/forgotten_letter.txt"
+    cp "$LOCALE_DIR/forgotten_letter.txt" "$MANOR/.old_wing/forgotten_letter.txt"
 fi
 
-cp "$LOCALE_DIR/install_complete.txt" "$WEEK_DIR/install_complete.txt"
-cp "$LOCALE_DIR/week1_complete.txt" "$WEEK_DIR/week1_complete.txt"
+cat > "$MANOR/upper_floor/observatory/navigation_note.txt" <<'EOF'
+THE OBSERVATORY
 
-ln -s secret_passage/vault "$WEEK_DIR/mansion/library/portal_to_vault"
+From here, try three different ways to think about a destination.
+
+.  means here
+.. means one level up
+~  means your home directory
+/  means the root of the whole filesystem
+
+Use pwd before and after moving. Do not memorize an address that belongs to someone else's computer.
+EOF
+
+cat > "$MANOR/ground_floor/west_corridor/kitchen/pantry/path_note.txt" <<'EOF'
+THE PANTRY
+
+A relative path is directions from where you are now.
+An absolute path is a complete address beginning at /.
+A path beginning with ~ starts from your home directory.
+
+The same room can be reached using different path descriptions.
+EOF
+
+cat > "$MANOR/ground_floor/entrance_hall/terminal_study/terminal_note.txt" <<'EOF'
+THE TERMINAL STUDY
+
+The terminal is not a memory contest.
+
+TAB COMPLETION
+Type part of a real path and press Tab. The shell can often complete the rest.
+Try navigating from the entrance hall by typing part of a nearby directory name and pressing Tab.
+
+COMMAND HISTORY
+The Up Arrow usually recalls a previous command.
+The history command shows commands you have already entered.
+
+SPACES
+The shell normally uses spaces to separate words.
+
+    cd east corridor
+
+is read as a command followed by two separate arguments: east and corridor.
+A name containing a space can be kept together with quotes, for example:
+
+    cd "east corridor"
+
+Terminal Explorer avoids spaces in required beginner paths so quoting does not become an accidental obstacle.
+
+CASE
+Linux names in this environment are case-sensitive.
+
+    library
+    Library
+    LIBRARY
+
+can be different names.
+
+THE PROMPT
+The prompt shows that the shell is ready for a command. Do not copy the prompt itself from examples.
+EOF
+
+# Real symbolic links act as portals. Students use them before learning to
+# create links themselves.
+ln -sfn ../../underground/old_tunnel "$MANOR/upper_floor/observatory/old_lift"
+ln -sfn secret_passage/old_staircase/vault "$MANOR/ground_floor/east_corridor/library/portal_to_vault"
 
 cp "$SCRIPT_DIR/verify.sh" "$WEEK_DIR/verify.sh"
 chmod +x "$WEEK_DIR/verify.sh"
@@ -100,11 +153,11 @@ chmod +x "$WEEK_DIR/verify.sh"
 if [ -s "$WEEK_DIR/install_complete.txt" ]; then
     cat "$WEEK_DIR/install_complete.txt"
 else
-    echo "Week 1 installed."
-    echo
-    echo "Start here:"
-    echo "cd ~/terminal-explorer/week1"
-    echo "cat README.txt"
+    echo "Chapter 1 installed."
 fi
 
+echo
+echo "Start here:"
+echo "cd ~/terminal-explorer/manor/ground_floor/entrance_hall"
+echo "cat clue.txt"
 echo

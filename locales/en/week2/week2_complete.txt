@@ -1,0 +1,15 @@
+WEEK 2 COMPLETE — THE ESTATE RESPONDS
+
+The restored room stands open in the east wing.
+The blueprint is preserved.
+The repaired lamp has been moved into storage.
+The obsolete debris and records are gone.
+
+More importantly, you changed the filesystem deliberately and verified the result.
+
+You are no longer only exploring the manor.
+You are learning to maintain it.
+
+Remember the steward's habit:
+
+OBSERVE → PREDICT → CHANGE → VERIFY

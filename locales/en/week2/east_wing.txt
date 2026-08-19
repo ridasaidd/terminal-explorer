@@ -1,0 +1,22 @@
+BLACKTHORN MANOR — EAST WING
+
+Fresh air moves through the opened windows.
+The restoration is beginning to take shape.
+
+One empty directory remains from the cleanup:
+
+rubble/
+
+It contains nothing useful.
+
+Remove the empty directory.
+
+You have already learned enough command structure to work this out:
+
+command [arguments]
+
+If you need a hint: rmdir removes an empty directory.
+
+Afterward, use ls to verify that rubble is gone and that restored_room remains.
+
+Then inspect the archive and storage rooms to make sure your earlier changes produced the results you expected.
