@@ -115,6 +115,8 @@ cat clue.txt
 
 The current installer uses English during the V2 rework.
 
+If you are teaching Week 1, use [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md). It explains the two foundation models—filesystem structure and command/options/arguments—and walks through how to use the Week 1 adventure in class.
+
 ---
 
 ## Learning reference
@@ -143,7 +145,7 @@ terminal-explorer/
 ```
 
 - `install.sh` — prepares the playable learning environment
-- `docs/` — course design, story, and learning references
+- `docs/` — course design, story, teaching guides, and learning references
 - `lessons/` — supporting educational material
 - `locales/` — existing localized text from the original design
 - `weeks/` — current installation/game-content structure; expected to evolve toward chapters/areas
@@ -153,6 +155,7 @@ terminal-explorer/
 ## Documentation
 
 - [`docs/COURSE_DESIGN.md`](docs/COURSE_DESIGN.md)
+- [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md)
 - [`docs/STORY.md`](docs/STORY.md)
 - [`docs/LEARNING_RESOURCES.md`](docs/LEARNING_RESOURCES.md)
 
