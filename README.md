@@ -12,9 +12,9 @@ You use Linux itself:
 - `ls` to look around
 - `cd` to move between rooms
 - `cat` to read objects and notes
-- `mkdir`, `touch`, `cp`, `mv`, `rm`, and `rmdir` to restore the manor
-- `grep` and `find` to investigate the manor
-- permissions, processes, pipes, scripts, SSH, and other Linux concepts as the adventure expands
+- filesystem paths to navigate the estate
+- symbolic links as portals
+- later commands to create, search, secure, automate, and administer the world
 
 The world is the filesystem. The filesystem is the world.
 
@@ -28,29 +28,43 @@ The central rule is:
 
 > **The puzzle is Linux. The prose should never be the puzzle.**
 
-A room should give the learner just enough information to understand the situation, then invite an action.
-
-Early encounters provide direct hints. Later encounters provide less help and expect the learner to reuse commands they already know.
-
-Typical progression:
+Typical play:
 
 1. **Orient** — Where am I?
 2. **Observe** — What is here?
-3. **Act** — What Linux command can change or inspect the situation?
+3. **Act** — What Linux command can inspect or change the situation?
 4. **Feedback** — What happened?
 5. **Discover** — What did I learn?
 
-Mistakes are part of the course.
+Early encounters provide direct hints. Later encounters expect students to reuse what they already know.
 
 **Consequences exist. Punishment does not.**
 
-Optional secrets reward curiosity but never block required progress.
+Optional secrets reward curiosity but should not block core progression.
 
 ---
 
-## Blackthorn Manor
+## One persistent manor
 
-Inside the Terminal Realm:
+Blackthorn Manor is one cumulative filesystem world:
+
+```text
+~/terminal-explorer/manor/
+```
+
+Week 1 establishes the manor. Later week installations extend the same directory tree rather than creating separate worlds.
+
+This lets students keep a mental map and reuse navigation skills as the filesystem becomes more complex.
+
+The canonical teacher map is documented in:
+
+[`docs/MANOR_MAP.md`](docs/MANOR_MAP.md)
+
+Its structure takes inspiration from classic text-adventure map design: recognizable regions, branches, depth, dead ends, discoveries, and shortcuts. The map remains pedagogically clean rather than deliberately maze-like.
+
+---
+
+## Blackthorn Manor metaphors
 
 | Linux concept | Manor equivalent |
 | --- | --- |
@@ -63,7 +77,47 @@ Inside the Terminal Realm:
 | Group | Faction |
 | Symbolic link | Portal |
 
-These metaphors support learning, but Linux terminology always remains visible. The learner should finish Terminal Explorer knowing Linux, not a replacement vocabulary.
+The metaphors support learning, but real Linux terminology always remains visible.
+
+---
+
+## Week 1 foundations
+
+Week 1 focuses on two core mental models:
+
+```text
+filesystem = a hierarchy/tree
+command line = command + options + arguments
+```
+
+It also teaches four navigation landmarks:
+
+```text
+.    here
+..   parent directory
+~    your home directory
+/    filesystem root
+```
+
+And three useful ways to describe destinations:
+
+```text
+relative path   = directions from here
+absolute path   = complete address beginning at /
+home-based path = directions from home beginning with ~
+```
+
+A key idea is that **relative paths depend on the current directory; absolute paths do not**.
+
+---
+
+## Portals
+
+Terminal Explorer uses real symbolic links as portals.
+
+Students can encounter and use portals before they are expected to create them. Later, when `ln -s` is formally taught, they can build their own shortcuts through the manor.
+
+This allows the experienced map to contain alternate routes while the underlying directory hierarchy remains tree-like.
 
 ---
 
@@ -71,16 +125,22 @@ These metaphors support learning, but Linux terminology always remains visible. 
 
 Terminal Explorer V2 is being developed **English-first** while the curriculum and interaction model stabilize.
 
-Older translation material may remain in the repository for reference, but new course work should target English first. Localization can return once the English course is coherent and tested.
+Planned progression:
 
-The current playable course is organized as weeks for classroom use, while the broader design can later evolve into larger areas/chapters.
+1. **Arrival — Finding Your Bearings**: filesystem tree, `pwd`, `ls`, `cd`, `.`, `..`, `~`, `/`, relative and absolute paths, command/options/arguments
+2. **Restoration of the Estate**: `mkdir`, `touch`, `cp`, `mv`, `rm`, `rmdir`
+3. **The Library — Reading Information**: `cat`, `less`, `head`, `tail`, file types
+4. **The Archives — Finding Things**: `find`, `grep`, wildcards, pipes
+5. **The Workshop — Editing**: text editing and safe file changes
+6. **The Locked Wing — Users and Permissions**: users, groups, ownership, `chmod`
+7. **The Engine Room — Processes**: `ps`, `top`, jobs, `kill`, services
+8. **The Messenger Tower — Streams and Pipes**: stdin, stdout, stderr, redirection, `|`
+9. **The Automaton Workshop — Bash**: variables, scripts, arguments, conditionals, loops
+10. **The Steward's Office — Administration**: packages, `sudo`, system inspection
+11. **The Observatory — Networking and SSH**: connectivity, addresses, SSH, remote systems
+12. **The Broken Manor — Troubleshooting**: logs, storage, memory, processes, diagnosis
 
-Current progression:
-
-1. **Week 1 — Finding Your Bearings**: filesystem tree, `pwd`, `ls`, `cd`, paths, command/options/arguments
-2. **Week 2 — Restoration of the Estate**: changing the filesystem safely with `mkdir`, `touch`, `cp`, `mv`, `rm`, and `rmdir`
-
-Planned later progression includes reading files, search, editing, permissions, processes, streams and pipes, Bash, administration, networking/SSH, and troubleshooting.
+Later weeks should extend or unlock areas in the same manor.
 
 ---
 
@@ -93,55 +153,50 @@ git clone https://github.com/ridasaidd/terminal-explorer.git
 cd terminal-explorer
 ```
 
-Run the installer:
+Install Week 1:
 
 ```bash
 ./install.sh
 ```
 
-Begin Week 1:
+Enter Blackthorn Manor:
 
 ```bash
-cd ~/terminal-explorer/week1/mansion/entrance_hall
+cd ~/terminal-explorer/manor/ground_floor/entrance_hall
 cat clue.txt
 ```
 
-After Week 1, begin Week 2:
+When it is time for Week 2, extend the existing manor:
 
 ```bash
-cd ~/terminal-explorer/week2/manor/steward_office
-cat clue.txt
+./install.sh 2
 ```
 
-The current installer uses English during the V2 rework.
+Then begin Week 2:
 
-Teaching guides:
-
-- [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md) — filesystem structure and command/options/arguments
-- [`docs/WEEK2_LESSON.md`](docs/WEEK2_LESSON.md) — changing the filesystem safely and understanding source/destination arguments
+```bash
+cd ~/terminal-explorer/manor/service_wing/steward_office
+cat clue.txt
+```
 
 ---
 
-## Week 2 learning habit
+## Teaching guides
 
-Week 2 adds a deliberate workflow for commands that change the filesystem:
-
-> **Observe → Predict → Change → Verify**
-
-Students should inspect where they are, predict how the tree will change, execute the command, then inspect the result.
-
-The Week 2 verifier checks the actual filesystem state rather than accepting a secret phrase.
+- [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md) — filesystem tree, `.`, `..`, `~`, `/`, relative/absolute/home-based paths, commands/options/arguments
+- [`docs/WEEK2_LESSON.md`](docs/WEEK2_LESSON.md) — safely changing the persistent tree with create/copy/move/remove commands
+- [`docs/MANOR_MAP.md`](docs/MANOR_MAP.md) — canonical cumulative manor map and map-design rules
 
 ---
 
 ## Learning reference
 
-Terminal Explorer keeps its in-game explanations intentionally concise. If you want a conventional Linux explanation alongside the adventure, see:
+Terminal Explorer keeps in-game explanations concise. Students who want conventional Linux explanations can use:
 
 **freeCodeCamp — Learn Linux for Beginners: From Basics to Advanced**  
 https://www.freecodecamp.org/news/learn-linux-for-beginners-book-basic-to-advanced/
 
-Terminal Explorer uses external learning resources as references; it does not copy their article text into the game.
+Terminal Explorer links to external learning resources rather than copying their article text.
 
 More resources are listed in [`docs/LEARNING_RESOURCES.md`](docs/LEARNING_RESOURCES.md).
 
@@ -159,17 +214,22 @@ terminal-explorer/
 └── weeks/
 ```
 
-- `install.sh` — prepares the playable learning environment
-- `docs/` — course design, story, teaching guides, and learning references
-- `lessons/` — supporting educational material
-- `locales/` — existing localized text from the original design
-- `weeks/` — playable classroom weeks
+Installed student environment:
+
+```text
+~/terminal-explorer/
+├── manor/        # persistent playable filesystem world
+├── week1/        # Week 1 metadata and verifier
+├── week2/        # Week 2 metadata and verifier after installation
+└── backpack/     # student-owned notes
+```
 
 ---
 
 ## Documentation
 
 - [`docs/COURSE_DESIGN.md`](docs/COURSE_DESIGN.md)
+- [`docs/MANOR_MAP.md`](docs/MANOR_MAP.md)
 - [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md)
 - [`docs/WEEK2_LESSON.md`](docs/WEEK2_LESSON.md)
 - [`docs/STORY.md`](docs/STORY.md)
