@@ -4,15 +4,17 @@
 
 Week 2 builds directly on Week 1.
 
-Students already have three important ideas:
+Students already have these important ideas:
 
 1. The filesystem is a tree of directories and files.
 2. Paths describe locations in that tree.
 3. A command line has a structure: command + options + arguments.
+4. Spaces divide shell words, and path names must be read exactly.
+5. Observation commands can confirm where they are and what exists.
 
 Week 2 adds another mental model:
 
-4. Many Linux commands change the tree by creating, copying, moving, renaming, or removing entries.
+6. Many Linux commands change the tree by creating, copying, moving, renaming, or removing entries.
 
 The manor is persistent. Week 2 does not create a second Blackthorn Manor. Installing Week 2 opens new areas inside the same estate the students explored in Week 1.
 
@@ -99,7 +101,44 @@ This keeps Week 1 navigation alive while introducing filesystem changes.
 
 ---
 
-# Part 3 — Mental Model: Commands Change the Tree
+# Part 3 — Files and Directories Are Different Kinds of Entries
+
+Before changing the filesystem, students should be able to distinguish a regular file from a directory.
+
+Introduce:
+
+```bash
+ls -l
+```
+
+but do **not** teach the full permission string yet.
+
+For Week 2, only read the first character:
+
+```text
+d    directory
+-    regular file
+```
+
+Example:
+
+```text
+drwxr-xr-x  ... archive
+-rw-r--r--  ... blueprint.txt
+```
+
+For now:
+
+- `d` tells us `archive` is a directory;
+- `-` tells us `blueprint.txt` is a regular file.
+
+The remaining permission characters belong to a later lesson.
+
+This gives students a concrete way to verify whether an entry is a room or an object.
+
+---
+
+# Part 4 — Mental Model: Commands Change the Tree
 
 For every modifying command, ask:
 
@@ -139,8 +178,6 @@ mkdir      restored_room
 
 The argument names the new directory.
 
----
-
 ## Create a file with `touch`
 
 After entering the new room:
@@ -164,11 +201,26 @@ restored_room/
 
 For this lesson, `touch` is used to create an empty file.
 
+## Create more than one file
+
+A command can receive several positional arguments:
+
+```bash
+touch chair.txt table.txt lamp.txt
+```
+
+```text
+COMMAND    ARGUMENT 1    ARGUMENT 2    ARGUMENT 3
+touch      chair.txt     table.txt     lamp.txt
+```
+
+This reinforces that arguments are separate pieces of information passed to one command.
+
 ---
 
-# Part 4 — Source and Destination Arguments
+# Part 5 — Source and Destination Arguments
 
-`cp` and `mv` reinforce the command/argument model because they commonly use two positional arguments.
+`cp` and `mv` reinforce the command/argument model because they commonly use source and destination arguments.
 
 General shape:
 
@@ -184,7 +236,7 @@ The workshop contains `blueprint.txt`.
 
 The archive is another directory in the service wing.
 
-A student may use a command such as:
+A student may use:
 
 ```bash
 cp blueprint.txt ../archive/
@@ -199,7 +251,7 @@ COMMAND    SOURCE          DESTINATION
 cp         blueprint.txt   ../archive/
 ```
 
-This combines two Week 1 ideas with one Week 2 idea:
+This combines Week 1 navigation with Week 2 file management:
 
 - `blueprint.txt` is the source argument;
 - `../archive/` is a relative destination path;
@@ -226,11 +278,9 @@ archive/
 
 The original remains.
 
----
-
 ## Move and rename with `mv`
 
-From the workshop, the student can move the damaged lamp into storage and rename it:
+From the workshop:
 
 ```bash
 mv broken_lamp.txt ../storage/repaired_lamp.txt
@@ -241,7 +291,7 @@ COMMAND    SOURCE             DESTINATION
 mv         broken_lamp.txt    ../storage/repaired_lamp.txt
 ```
 
-The destination path also supplies a new filename.
+The destination path can identify both a new location and a new name.
 
 Before:
 
@@ -261,11 +311,50 @@ storage/
 └── repaired_lamp.txt
 ```
 
-This is a good place to ask students to read the relative path instead of treating `../storage/repaired_lamp.txt` as one mysterious string.
+This is a good place to distinguish:
+
+```bash
+mv lamp.txt ../storage/
+```
+
+from:
+
+```bash
+mv lamp.txt ../storage/repaired_lamp.txt
+```
+
+The first keeps the basename `lamp.txt`.
+
+The second supplies a new basename and therefore renames it while moving it.
 
 ---
 
-# Part 5 — Removing Things Safely
+# Part 6 — Directory Creation with Paths
+
+Once students understand a single `mkdir`, introduce an option in a useful context:
+
+```bash
+mkdir -p guest_room/storage
+```
+
+Break it apart:
+
+```text
+COMMAND    OPTION    ARGUMENT
+mkdir      -p        guest_room/storage
+```
+
+For this lesson:
+
+> `-p` allows `mkdir` to create missing parent directories in the path.
+
+This is valuable because it combines all three Week 1 command-line parts with a Week 2 filesystem change.
+
+Do not rush this before students understand plain `mkdir`.
+
+---
+
+# Part 7 — Removing Things Safely
 
 Week 2 introduces destructive commands.
 
@@ -290,6 +379,10 @@ rm obsolete_note.txt
 
 The argument identifies the file to remove.
 
+Make this explicit:
+
+> `rm` in the shell is not the same as moving something to a graphical Trash or Recycle Bin.
+
 Terminal Explorer only asks students to remove disposable lesson objects.
 
 ## Remove an empty directory with `rmdir`
@@ -302,24 +395,42 @@ rmdir rubble
 
 `rmdir` only removes an empty directory.
 
-Week 2 intentionally does not teach `rm -rf`.
+That limitation is useful for beginners because Linux refuses if the directory still contains something.
 
-The objective is understanding and safe habits before speed.
+## Recursive removal is deliberately deferred
+
+Week 2 should **not** normalize:
+
+```bash
+rm -r
+```
+
+or especially:
+
+```bash
+rm -rf
+```
+
+Students should first become comfortable distinguishing files from directories, reading paths, identifying the target argument, and predicting the resulting tree.
+
+Recursive deletion belongs in a later file-management challenge after the safe habits are established.
 
 ---
 
-# Part 6 — Predict Before Executing
+# Part 8 — Predict Before Executing
 
 For every Week 2 task:
 
 1. `pwd` if unsure of location.
-2. `ls` to inspect the current location.
+2. `ls` or `ls -l` to inspect the current location.
 3. Read the intended command.
 4. Identify command, options, and arguments.
 5. Read any path argument from left to right.
-6. Predict what will change in the tree.
-7. Run the command.
-8. Use `ls`, `pwd`, or another observation command to verify.
+6. Identify source and destination when applicable.
+7. Predict what will change in the tree.
+8. Run the command.
+9. Inspect both the source and destination when relevant.
+10. Verify the resulting state.
 
 ```text
 OBSERVE → PREDICT → CHANGE → VERIFY
@@ -329,29 +440,85 @@ This workflow matters more than completing the adventure quickly.
 
 ---
 
-# Part 7 — How to Play Week 2
+# Part 9 — File and Directory Management Progression
 
-The adventure starts in the service wing's steward office.
+Terminal Explorer should introduce management commands in layers.
+
+## Week 2 — safe single-entry management
+
+Teach and practice:
+
+```text
+mkdir
+mkdir -p
+touch
+cp
+mv
+rm
+rmdir
+ls -l  (only file-vs-directory recognition)
+```
+
+The student should understand:
+
+- what is being changed;
+- the exact path being changed;
+- source versus destination;
+- whether the original remains;
+- how to verify the result.
+
+## Later — recursive management
+
+Only after those habits are stable, introduce:
+
+```text
+cp -r
+rm -r
+```
+
+These commands act on directory trees rather than one ordinary file or an empty directory.
+
+The conceptual prerequisite is:
+
+> A recursive operation affects a directory and the descendants beneath it.
+
+That should be taught visually against the manor map before execution.
+
+## Much later — forceful recursive deletion
+
+Do not make this an early-course convenience:
+
+```bash
+rm -rf
+```
+
+If it is eventually introduced, teach `-r` and `-f` separately, explain the reduced safeguards, and only use it against an isolated disposable training tree.
+
+The learner should never leave Terminal Explorer thinking `rm -rf` is the normal way to clean up.
+
+---
+
+# Part 10 — How to Play Week 2
 
 Students will:
 
-1. navigate from the service wing to the east-corridor restoration zone;
-2. create `restored_room/`;
-3. create `inventory.txt` inside it;
-4. return to the service wing;
-5. copy `blueprint.txt` from the workshop to the archive while preserving the original;
-6. move and rename `broken_lamp.txt` into storage as `repaired_lamp.txt`;
-7. remove `obsolete_note.txt`;
-8. remove the empty `rubble/` directory;
-9. run the Week 2 verifier.
+1. navigate from the service wing to the restoration zone;
+2. distinguish files and directories with `ls -l`;
+3. create `restored_room/`;
+4. create `inventory.txt` inside it;
+5. return to the service wing;
+6. copy `blueprint.txt` from the workshop to the archive while preserving the original;
+7. move and rename `broken_lamp.txt` into storage as `repaired_lamp.txt`;
+8. remove `obsolete_note.txt`;
+9. remove the empty `rubble/` directory;
+10. optionally practice `mkdir -p` and multiple `touch` arguments in disposable lesson space;
+11. run the Week 2 verifier.
 
 The installed verifier is located at:
 
 ```text
 ~/terminal-explorer/week2/verify.sh
 ```
-
-It checks the actual state of the persistent manor.
 
 Run it with:
 
@@ -361,9 +528,9 @@ Run it with:
 
 ---
 
-# Part 8 — Suggested Classroom Demonstration
+# Part 11 — Suggested Classroom Demonstration
 
-Draw only the relevant extension to the existing map:
+Draw only the relevant extension:
 
 ```text
 manor/
@@ -383,13 +550,21 @@ manor/
 
 Start in `service_wing/workshop/`.
 
-Ask students to explain:
+First run:
+
+```bash
+ls -l
+```
+
+Ask which entries are files and which are directories without teaching permissions yet.
+
+Then ask students to explain:
 
 ```bash
 cp blueprint.txt ../archive/
 ```
 
-Then:
+and:
 
 ```bash
 mv broken_lamp.txt ../storage/repaired_lamp.txt
@@ -403,22 +578,25 @@ Ask:
 - What does `..` mean in that path?
 - Which operation leaves the original behind?
 - Which operation removes the source from its old location?
+- Did the second command also rename the file?
 
-This single exercise reinforces navigation, paths, arguments, copying, moving, and renaming.
+Before deletion, ask students to run `pwd` and `ls` and identify the exact target.
 
 ---
 
-# Part 9 — Week 2 Commands
+# Part 12 — Week 2 Commands
 
 Students should become comfortable with:
 
 ```text
-mkdir   create a directory
-touch   create an empty file for this lesson
-cp      copy
-mv      move or rename
-rm      remove a file
-rmdir   remove an empty directory
+mkdir      create a directory
+mkdir -p   create missing directories along a path
+touch      create an empty file for this lesson
+cp         copy
+mv         move or rename
+rm         remove a file
+rmdir      remove an empty directory
+ls -l      inspect entry type; permissions come later
 ```
 
 They should continue using:
@@ -430,29 +608,33 @@ cd
 cat
 ```
 
-Week 2 should not replace Week 1 skills. It should force students to reuse them in a larger filesystem.
+Week 2 should force students to reuse Week 1 skills in a larger filesystem.
 
 ---
 
-# Part 10 — What Students Should Understand Before Moving On
+# Part 13 — What Students Should Understand Before Moving On
 
 At the end of Week 2, students should be able to explain:
 
+- that files and directories are different entry types;
+- how to recognize a regular file versus directory from the first character of `ls -l`;
 - that Blackthorn Manor is one persistent directory tree;
-- that a later week can extend that tree without replacing it;
+- that later weeks can extend that tree without replacing it;
 - how to navigate between regions using paths;
 - how `mkdir` changes the tree;
-- how `touch` can create a file;
+- what `mkdir -p` does at a basic level;
+- how `touch` can create one or several empty files;
 - the difference between copying and moving;
 - that `mv` can also rename;
 - why `cp` and `mv` commonly use source and destination arguments;
-- how relative paths can be used as command arguments;
+- how relative paths can be command arguments;
 - why argument order matters;
 - what `rm` removes;
+- why `rm` should not be treated as a Trash command;
 - what `rmdir` removes;
-- why destructive commands require extra care;
+- why recursive deletion is intentionally more dangerous;
 - how to predict a filesystem change before running a command;
-- how to verify the result afterward.
+- how to verify both source and destination afterward.
 
 The most important habit remains:
 
