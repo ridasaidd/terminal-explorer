@@ -10,6 +10,8 @@ Students should leave Week 1 understanding:
 2. They are always located somewhere in that tree.
 3. Paths describe locations in different ways.
 4. A command line has a structure: command + options + arguments.
+5. The shell splits a command line into words, so spaces, quoting, and case matter.
+6. The terminal has built-in navigation aids such as tab completion and command history.
 
 The goal is not to memorize many commands. The goal is to learn how to orient yourself, read a path, choose a destination, and understand how a command is constructed.
 
@@ -290,8 +292,6 @@ A relative path can mean something different when the starting location changes.
 
 That is the key property students should understand.
 
----
-
 ## Absolute path = full address
 
 An absolute path begins with `/`.
@@ -324,8 +324,6 @@ Ask:
 
 No.
 
----
-
 ## Home-based path = directions from home
 
 For beginner teaching, treat a path beginning with `~` as a third useful form:
@@ -341,8 +339,6 @@ Classroom analogy:
 This is easier to explain before introducing shell expansion details.
 
 Later, students can learn that the shell expands `~` to the user's home directory before running the command.
-
----
 
 ## The key comparison
 
@@ -395,6 +391,8 @@ To include hidden entries:
 ```bash
 ls -a
 ```
+
+A filename or directory beginning with `.` is hidden from a normal `ls`, but "hidden" does not mean encrypted, protected, or secret from the operating system. It is mainly a naming convention used by tools.
 
 ## Where do I want to go next?
 
@@ -497,7 +495,106 @@ This prepares students to understand source and destination rather than memorizi
 
 ---
 
-# Part 7 — Portals: Symbolic Links as Navigation Shortcuts
+# Part 7 — Spaces, Quoting, and Case Sensitivity
+
+The shell normally separates a command line at spaces.
+
+That is why this:
+
+```bash
+cd east corridor
+```
+
+is not one destination name. The shell sees separate words:
+
+```text
+COMMAND    ARGUMENT 1    ARGUMENT 2
+cd         east          corridor
+```
+
+If a real directory were named `east corridor`, the name would need quoting:
+
+```bash
+cd "east corridor"
+```
+
+or escaping:
+
+```bash
+cd east\ corridor
+```
+
+Terminal Explorer mostly avoids spaces in required path names during the beginner weeks so quoting does not become an accidental obstacle. The point is to understand why spaces matter.
+
+Linux names are also case-sensitive on the normal filesystems students will encounter here:
+
+```text
+library
+Library
+LIBRARY
+```
+
+can be three different names.
+
+Students should learn to read names exactly rather than guessing capitalization.
+
+---
+
+# Part 8 — Terminal Navigation Aids
+
+Students should learn that using the terminal is not a memory contest.
+
+## Tab completion
+
+When part of a path or filename has been typed, `Tab` can ask the shell to complete it when the remaining choice is unambiguous.
+
+For example:
+
+```text
+cd gro<Tab>
+```
+
+may complete to:
+
+```text
+cd ground_floor/
+```
+
+If more than one name matches, another `Tab` may show possibilities depending on the shell.
+
+Tab completion reinforces the filesystem model because completion only works from names that actually exist in the relevant path.
+
+## Command history
+
+The Up Arrow recalls earlier commands in most interactive shells.
+
+Students can also run:
+
+```bash
+history
+```
+
+This is useful when repeating a long absolute or relative path.
+
+The lesson should encourage reuse and correction of previous commands rather than unnecessary retyping.
+
+## The prompt
+
+Explain at a basic level that the prompt is the shell showing that it is ready for input.
+
+Students should distinguish:
+
+```text
+student@machine:~$
+```
+
+from the command they type after it.
+
+They should not copy the prompt itself when following examples.
+
+---
+
+# Part 9 — Portals: Symbolic Links as Navigation Shortcuts
 
 Week 1 contains real symbolic links presented as portals.
 
@@ -519,7 +616,7 @@ Later, `ln -s` will let students build their own portals.
 
 ---
 
-# Part 8 — Suggested Classroom Demonstration
+# Part 10 — Suggested Classroom Demonstration
 
 Use a projected terminal and a simplified map.
 
@@ -587,11 +684,19 @@ Finally compare:
 /    root
 ```
 
-If students can explain those four landmarks and distinguish full-address paths from directions-from-here, the navigation foundation is working.
+Then demonstrate:
+
+- a partial path completed with `Tab`;
+- the Up Arrow to recall a previous `cd`;
+- `history`;
+- a deliberately mistyped capitalization;
+- how `cd east corridor` becomes two arguments.
+
+If students can explain those four landmarks, distinguish full-address paths from directions-from-here, and identify the words passed to a command, the navigation foundation is working.
 
 ---
 
-# Part 9 — How to Play Week 1
+# Part 11 — How to Play Week 1
 
 For each location:
 
@@ -605,14 +710,16 @@ For each location:
 8. Use `cd ..` to move to a parent.
 9. Use `ls -a` when the room suggests something may be hidden.
 10. Experiment with relative, absolute, and home-based paths.
-11. Explore the portal shortcuts.
-12. Reach the vault and recover the Week 1 completion key.
+11. Use Tab completion instead of retyping long names when useful.
+12. Reuse previous commands with the Up Arrow or `history`.
+13. Explore the portal shortcuts.
+14. Reach the vault and recover the Week 1 completion key.
 
 A wrong path is not failure. The goal is to form and correct a mental map by interacting with a real filesystem.
 
 ---
 
-# Part 10 — Week 1 Commands and Symbols
+# Part 12 — Week 1 Commands and Symbols
 
 Students should become comfortable with:
 
@@ -635,14 +742,25 @@ And recognize:
 /        filesystem root and absolute-path starting point
 ```
 
+They should also know:
+
+```text
+Tab       complete paths/names when possible
+Up Arrow  recall a previous command
+spaces    normally separate command-line words
+quotes    can keep spaces inside one argument
+case      matters in Linux names
+```
+
 ---
 
-# Part 11 — What Students Should Understand Before Moving On
+# Part 13 — What Students Should Understand Before Moving On
 
 At the end of Week 1, a student should be able to explain in their own words:
 
 - that the filesystem is hierarchical;
 - what parent, child, and sibling directories are;
+- the difference between a file and a directory at a basic level;
 - what a current working directory is;
 - what `.` means;
 - what `..` means;
@@ -657,7 +775,11 @@ At the end of Week 1, a student should be able to explain in their own words:
 - what a command is;
 - what an argument is;
 - what an option or flag is;
-- how to identify those pieces in a simple command line;
+- how spaces divide a command line into words;
+- why quoting is sometimes necessary;
+- that Linux names are case-sensitive in this environment;
+- how Tab completion helps with paths;
+- how command history helps reuse prior commands;
 - how to use `pwd`, `ls`, `cd`, and `cat` to explore an unfamiliar directory tree;
 - that a symbolic link can provide an alternate path to another location.
 
