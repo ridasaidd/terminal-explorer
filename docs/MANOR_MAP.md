@@ -24,7 +24,8 @@ This design is inspired by the navigation complexity of classic text adventures 
 manor/
 ├── ground_floor/
 │   ├── entrance_hall/
-│   │   └── cloakroom/
+│   │   ├── cloakroom/
+│   │   └── terminal_study/
 │   ├── west_corridor/
 │   │   ├── kitchen/
 │   │   │   └── pantry/
@@ -52,6 +53,15 @@ manor/
 
 The map is intentionally large enough that students must navigate rather than simply move between a handful of sibling directories.
 
+The `terminal_study/` is a safe Week 1 practice room for:
+
+- Tab completion;
+- command history and the Up Arrow;
+- understanding that spaces separate shell words;
+- quoting names that contain spaces;
+- case sensitivity;
+- distinguishing the prompt from the command being typed.
+
 ---
 
 # Week 2 extension
@@ -64,12 +74,16 @@ manor/
 │   ├── steward_office/
 │   ├── workshop/
 │   ├── storage/
-│   └── archive/
+│   ├── archive/
+│   └── training_room/
+│       └── sandbox/
 └── ground_floor/
     └── east_corridor/
         └── restoration_zone/
             └── rubble/
 ```
+
+The `training_room/sandbox/` is disposable practice space for safe file and directory management. It supports `ls -l`, multiple `touch` arguments, and `mkdir -p` without making recursive deletion part of the Week 2 workflow.
 
 Later weeks should continue this pattern by unlocking or adding meaningful regions rather than creating a new filesystem world.
 
@@ -161,6 +175,43 @@ Technically, the shell expands `~` to the user's home directory. That implementa
 
 ---
 
+# File-management progression
+
+The manor should teach changes to the tree in increasing levels of risk.
+
+## Week 2 — single-entry and empty-directory operations
+
+Introduce:
+
+```text
+mkdir
+mkdir -p
+touch
+cp
+mv
+rm
+rmdir
+```
+
+The student should be able to name the target, source, and destination before executing the command and verify the resulting state afterward.
+
+## Later — recursive tree operations
+
+After that habit is stable, introduce:
+
+```text
+cp -r
+rm -r
+```
+
+A recursive operation should be explained visually as an operation on a directory **and all descendants beneath it**.
+
+## Much later — forceful recursive deletion
+
+`rm -rf` should never be presented as an ordinary cleanup shortcut. If it is eventually introduced, `-r` and `-f` should be explained separately and exercises should operate only on an isolated disposable training subtree.
+
+---
+
 # Portals
 
 A portal is a real symbolic link.
@@ -192,3 +243,4 @@ When `ln -s` is formally taught, students can create their own portals.
 4. Hidden directories and portals may reward exploration but should not block core progress unless the relevant Linux concept has already been introduced.
 5. Each installation should preserve existing student work and extend the manor rather than replace it.
 6. The filesystem hierarchy is the lesson. Atmosphere supports it; atmosphere must not obscure it.
+7. Destructive command power should grow only after students demonstrate the habit of observing, predicting, changing, and verifying.
