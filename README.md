@@ -12,6 +12,7 @@ You use Linux itself:
 - `ls` to look around
 - `cd` to move between rooms
 - `cat` to read objects and notes
+- `mkdir`, `touch`, `cp`, `mv`, `rm`, and `rmdir` to restore the manor
 - `grep` and `find` to investigate the manor
 - permissions, processes, pipes, scripts, SSH, and other Linux concepts as the adventure expands
 
@@ -72,22 +73,14 @@ Terminal Explorer V2 is being developed **English-first** while the curriculum a
 
 Older translation material may remain in the repository for reference, but new course work should target English first. Localization can return once the English course is coherent and tested.
 
-The course is organized as areas/chapters rather than assuming every learner follows the same weekly schedule.
+The current playable course is organized as weeks for classroom use, while the broader design can later evolve into larger areas/chapters.
 
-Planned progression:
+Current progression:
 
-1. **Arrival — Finding Your Bearings**: `pwd`, `ls`, `cd`, paths, `clear`, `history`
-2. **The Manor — Files and Rooms**: `mkdir`, `touch`, `cp`, `mv`, `rm`
-3. **The Library — Reading Information**: `cat`, `less`, `head`, `tail`, file types
-4. **The Archives — Finding Things**: `find`, `grep`, wildcards, pipes
-5. **The Workshop — Editing**: text editing and safe file changes
-6. **The Locked Wing — Users and Permissions**: users, groups, ownership, `chmod`
-7. **The Engine Room — Processes**: `ps`, `top`, jobs, `kill`, services
-8. **The Messenger Tower — Streams and Pipes**: stdin, stdout, stderr, redirection, `|`
-9. **The Automaton Workshop — Bash**: variables, scripts, arguments, conditionals, loops
-10. **The Steward's Office — Administration**: packages, `sudo`, system inspection
-11. **The Observatory — Networking and SSH**: connectivity, addresses, SSH, remote systems
-12. **The Broken Manor — Troubleshooting**: logs, storage, memory, processes, diagnosis
+1. **Week 1 — Finding Your Bearings**: filesystem tree, `pwd`, `ls`, `cd`, paths, command/options/arguments
+2. **Week 2 — Restoration of the Estate**: changing the filesystem safely with `mkdir`, `touch`, `cp`, `mv`, `rm`, and `rmdir`
+
+Planned later progression includes reading files, search, editing, permissions, processes, streams and pipes, Bash, administration, networking/SSH, and troubleshooting.
 
 ---
 
@@ -106,16 +99,38 @@ Run the installer:
 ./install.sh
 ```
 
-Then begin the adventure:
+Begin Week 1:
 
 ```bash
 cd ~/terminal-explorer/week1/mansion/entrance_hall
 cat clue.txt
 ```
 
+After Week 1, begin Week 2:
+
+```bash
+cd ~/terminal-explorer/week2/manor/steward_office
+cat clue.txt
+```
+
 The current installer uses English during the V2 rework.
 
-If you are teaching Week 1, use [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md). It explains the two foundation models—filesystem structure and command/options/arguments—and walks through how to use the Week 1 adventure in class.
+Teaching guides:
+
+- [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md) — filesystem structure and command/options/arguments
+- [`docs/WEEK2_LESSON.md`](docs/WEEK2_LESSON.md) — changing the filesystem safely and understanding source/destination arguments
+
+---
+
+## Week 2 learning habit
+
+Week 2 adds a deliberate workflow for commands that change the filesystem:
+
+> **Observe → Predict → Change → Verify**
+
+Students should inspect where they are, predict how the tree will change, execute the command, then inspect the result.
+
+The Week 2 verifier checks the actual filesystem state rather than accepting a secret phrase.
 
 ---
 
@@ -148,7 +163,7 @@ terminal-explorer/
 - `docs/` — course design, story, teaching guides, and learning references
 - `lessons/` — supporting educational material
 - `locales/` — existing localized text from the original design
-- `weeks/` — current installation/game-content structure; expected to evolve toward chapters/areas
+- `weeks/` — playable classroom weeks
 
 ---
 
@@ -156,6 +171,7 @@ terminal-explorer/
 
 - [`docs/COURSE_DESIGN.md`](docs/COURSE_DESIGN.md)
 - [`docs/WEEK1_LESSON.md`](docs/WEEK1_LESSON.md)
+- [`docs/WEEK2_LESSON.md`](docs/WEEK2_LESSON.md)
 - [`docs/STORY.md`](docs/STORY.md)
 - [`docs/LEARNING_RESOURCES.md`](docs/LEARNING_RESOURCES.md)
 
