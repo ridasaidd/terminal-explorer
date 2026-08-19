@@ -46,25 +46,26 @@ install_week() {
     local marker_file="$GAME_DIR/.installed-week${week_number}"
 
     if [ -f "$marker_file" ]; then
-        echo "Chapter $week_number already installed. Skipping."
+        echo "Week $week_number already installed. Skipping."
         return
     fi
 
     if [ ! -x "$week_script" ]; then
-        echo "Chapter $week_number installer not found or not executable:"
+        echo "Week $week_number installer not found or not executable:"
         echo "$week_script"
         return
     fi
 
     echo
-    echo "Installing Chapter $week_number..."
+    echo "Installing Week $week_number..."
     "$week_script" "$LANGUAGE"
 
     touch "$marker_file"
-    echo "Chapter $week_number installed."
+    echo "Week $week_number installed."
 }
 
 install_week 1
+install_week 2
 
 echo
 echo "======================================"
@@ -75,8 +76,11 @@ echo "Blackthorn Manor is ready."
 echo
 echo "For the V2 rework, the active course language is English."
 echo
-echo "Enter the manor:"
+echo "Start with Week 1:"
 echo "cd ~/terminal-explorer/week1/mansion/entrance_hall"
+echo "cat clue.txt"
 echo
-echo "Then read what you find there."
+echo "After Week 1, begin Week 2 here:"
+echo "cd ~/terminal-explorer/week2/manor/steward_office"
+echo "cat clue.txt"
 echo
