@@ -1,330 +1,396 @@
-# Terminal Explorer – Course Design Document
+# Terminal Explorer — Course Design
 
 ## Vision
 
-Terminal Explorer is a story-driven Linux course that teaches Linux fundamentals through exploration, challenges, and world building.
+Terminal Explorer is an old-school text adventure played through **real Linux commands**.
 
-Students do not simply learn commands.
+The learner explores Blackthorn Manor, but there is no fake adventure-command parser. The terminal is the interface and the Linux filesystem is the world.
 
-They become explorers and stewards of an ancient estate.
+Directories are rooms. Files are objects. Permissions are locks. Processes can be presented as spirits. Symbolic links can become portals.
 
-The course combines:
+The story provides context and motivation. Linux provides the actual mechanics.
 
-* Linux
-* Gamification
-* Storytelling
-* Problem solving
-* Bash scripting
-* System administration
+> **The puzzle is Linux. The prose should never be the puzzle.**
 
-The ultimate goal is to transform complete beginners into confident Linux users.
+The goal is to take a complete beginner from first terminal navigation toward confident everyday Linux use, scripting, administration, networking, and troubleshooting.
 
 ---
 
-# Core Philosophy
+## Core principles
 
-The course follows three principles:
-
-1. Learn by doing.
-2. Learn through discovery.
-3. Mistakes are opportunities for learning.
-
-Students are encouraged to:
-
-* Experiment
-* Explore
-* Take notes
-* Maintain journals
-* Discover secrets
+1. **Learn by doing.** A command should usually be introduced because the learner has an immediate reason to use it.
+2. **Learn through discovery.** The filesystem itself provides places, objects, evidence, and consequences.
+3. **Use real terminology.** Story metaphors may reinforce Linux concepts but must never replace their real names.
+4. **Keep prose concise.** Room descriptions create atmosphere; they do not become riddles.
+5. **Hints fade with competence.** Show, guide, recall, then require independent use.
+6. **Consequences exist. Punishment does not.** Mistakes should produce useful feedback or recoverable situations.
+7. **Secrets are optional.** Curiosity is rewarded, but hidden lore must not block required learning.
+8. **Do not simulate what Linux already provides.** Prefer real directories, files, permissions, processes, links, streams, and scripts.
 
 ---
 
-# The World
+## The interaction loop
 
-## Blackthorn Manor
+Every learning encounter should roughly follow:
 
-The entire course takes place inside Blackthorn Manor.
+### 1. Orient
 
-Blackthorn Manor is an ancient estate connected to the Terminal Realm.
+Where am I?
 
-The filesystem is the mansion.
+Typical tools: `pwd`, paths, prompt awareness.
 
-Directories are rooms.
+### 2. Observe
 
-Files are objects.
+What is here? What changed?
 
-The terminal is the explorer's interface to the world.
+Typical tools: `ls`, `ls -a`, `ls -l`, `cat`, `less`, `ps`.
 
----
+### 3. Act
 
-# Linux Concepts as Story Mechanics
+What Linux command lets me inspect, move, create, search, modify, connect, or diagnose?
 
-| Linux Concept        | Story Equivalent |
-| -------------------- | ---------------- |
-| Directory            | Room             |
-| File                 | Object           |
-| Hidden file          | Secret           |
-| Permission           | Lock             |
-| Process              | Spirit           |
-| User                 | Resident         |
-| Group                | Faction          |
-| Symlink              | Portal           |
-| Environment Variable | Ancient Magic    |
-| Git                  | Time Magic       |
+### 4. Feedback
 
----
+The world changes, reveals information, or gives a concise correction.
 
-# Course Progression
+### 5. Discover
 
-## Week 1 – The Mystery Mansion
+The learner connects the command to a reusable Linux concept.
 
-Theme:
+The repeated mental model is:
 
-Exploration and discovery.
-
-Commands:
-
-* pwd
-* ls
-* cd
-* cat
-* clear
-* history
-
-Objectives:
-
-* Determine location.
-* Explore rooms.
-* Read clues.
-* Find the hidden vault.
-* Discover the completion key.
-
-Story:
-
-The explorer arrives at Blackthorn Manor and uncovers the truth about its mysterious past.
+> **Where am I? → What can I see? → What can I do? → Did it work?**
 
 ---
 
-## Week 2 – Restoration of the Estate
+## Hint progression
 
-Theme:
+Hints should become less explicit as the learner gains experience.
 
-Create, modify, and organize.
+### First encounter — show
 
-Commands:
+```text
+You are somewhere inside the manor.
+Find your current location.
 
-* mkdir
-* touch
-* cp
-* mv
-* nano
-* rm
-* rmdir
+Try: pwd
+```
 
-Objectives:
+### Second encounter — guide
 
-* Build new rooms.
-* Create inventories.
-* Rename areas.
-* Remove cursed objects.
-* Restore the estate.
+```text
+You have entered another part of the manor.
+Find your current location.
+```
 
-Story:
+### Later encounter — recall
 
-The explorer becomes the steward of Blackthorn Manor and begins its restoration.
+```text
+You are lost.
+Orient yourself.
+```
 
----
+### Independent use
 
-## Week 3 – The Great Archives
+No hint is required unless the learner asks for help or reaches a designed recovery path.
 
-Theme:
-
-Search and discovery.
-
-Commands:
-
-* grep
-* find
-* head
-* tail
-* less
-* wc
-
-Objectives:
-
-* Search records.
-* Discover hidden knowledge.
-* Uncover forgotten lore.
-
-Story:
-
-Ancient documents reveal secrets of the manor's history.
+Avoid cryptic wording such as riddles whose answer merely happens to be a Linux command.
 
 ---
 
-## Week 4 – Stewardship and Security
+## Room writing style
 
-Theme:
+Room text should normally contain:
 
-Administration and control.
+1. a location title;
+2. one to three short atmospheric sentences;
+3. visible objects or a concrete problem;
+4. an action goal;
+5. an optional hint when appropriate.
 
-Commands:
+Example:
 
-* chmod
-* ps
-* kill
-* top
+```text
+THE GREAT LIBRARY
 
-Additional Topics:
+Dust hangs motionless between towering shelves.
 
-* Users
-* Groups
-* Ownership
+A note on the desk reads:
+"The name Blackthorn appears somewhere in these archives."
 
-Objectives:
+Find it.
 
-* Manage access.
-* Protect the estate.
-* Defeat rogue spirits.
+Hint: grep searches text for a pattern.
+```
 
-Story:
-
-The estate grows and must be protected from internal and external threats.
+The prose establishes the situation. Linux solves it.
 
 ---
 
-## Week 5 – Automation of the Estate
+## Linux concepts as story mechanics
 
-Theme:
+| Linux concept | Story equivalent |
+| --- | --- |
+| Directory | Room |
+| File | Object |
+| Hidden file | Secret |
+| Permission | Lock |
+| Process | Spirit |
+| User | Resident |
+| Group | Faction |
+| Symbolic link | Portal |
+| Service | Manor mechanism |
+| Script | Automation |
 
-Bash scripting and automation.
-
-Commands:
-
-* |
-* >
-* > >
-* tar
-
-Programming Concepts:
-
-* Variables
-* Conditionals
-* Loops
-* Functions
-* Shell scripts
-
-Objectives:
-
-* Automate maintenance.
-* Generate reports.
-* Backup important data.
-
-Story:
-
-A great estate cannot be managed manually.
-
-The explorer learns the art of automation.
+Avoid maintaining a second vocabulary such as “spell = command” that the beginner must memorize. Say **command**, **flag/option**, **argument**, **script**, **manual page**, and **symbolic link** while allowing the story metaphor to appear around them.
 
 ---
 
-# Student Journal
+## Curriculum progression
 
-Students maintain their own inventory and journal.
+Terminal Explorer V2 uses **areas/chapters**, not fixed-duration weeks. The current `weeks/` directory is an implementation detail that can be migrated gradually.
 
-The course does not manage the inventory.
+### 1. Arrival — Finding Your Bearings
 
-Students are responsible for their own knowledge.
+Concepts:
 
-Suggested structure:
+- terminal basics
+- `pwd`
+- `ls`
+- `cd`
+- relative and absolute paths
+- `.` and `..`
+- `clear`
+- `history`
 
-~/terminal-explorer/inventory/
+### 2. The Manor — Files and Rooms
 
-Files:
+Concepts:
 
-* commands.txt
-* achievements.txt
-* lore.txt
-* discoveries.txt
-* notes.txt
+- files vs directories
+- `mkdir`
+- `touch`
+- `cp`
+- `mv`
+- `rm`
+- `rmdir`
+- safe destructive operations
 
-Students may use:
+### 3. The Library — Reading Information
 
-* nano
-* cat
-* echo
-* > >
+Concepts:
 
-to maintain their journal.
+- `cat`
+- `less`
+- `head`
+- `tail`
+- file types
+- reading command output
+
+### 4. The Archives — Finding Things
+
+Concepts:
+
+- `find`
+- `grep`
+- recursive search
+- wildcards/globbing
+- simple pipes
+- `wc`
+
+### 5. The Workshop — Editing
+
+Concepts:
+
+- beginner-friendly text editing
+- saving and exiting
+- modifying configuration/text safely
+- optional editor paths later
+
+### 6. The Locked Wing — Users and Permissions
+
+Concepts:
+
+- `whoami`
+- users and groups
+- ownership
+- `ls -l`
+- read/write/execute
+- `chmod`
+- `sudo` conceptually and safely
+
+### 7. The Engine Room — Processes
+
+Concepts:
+
+- `ps`
+- `top`
+- jobs
+- signals
+- `kill`
+- services/process lifecycle
+
+### 8. The Messenger Tower — Streams and Pipes
+
+Concepts:
+
+- stdin
+- stdout
+- stderr
+- `>`
+- `>>`
+- `<`
+- `|`
+- composing commands
+
+### 9. The Automaton Workshop — Bash
+
+Concepts:
+
+- executable scripts
+- shebangs
+- variables
+- arguments
+- conditionals
+- loops
+- functions
+- automation
+
+### 10. The Steward's Office — Administration
+
+Concepts:
+
+- packages
+- disk and memory inspection
+- system information
+- configuration basics
+- administrative boundaries
+
+### 11. The Observatory — Networking and SSH
+
+Concepts:
+
+- addresses and hostnames
+- connectivity
+- ports conceptually
+- SSH
+- remote systems
+- basic transfer concepts
+
+### 12. The Broken Manor — Troubleshooting
+
+Concepts:
+
+- logs
+- disk space
+- memory
+- processes
+- permissions
+- networking
+- forming and testing hypotheses
+
+The final chapters should increasingly combine earlier skills rather than introducing one command per puzzle.
 
 ---
 
-# Secrets and Easter Eggs
+## Curriculum reference
 
-Blackthorn Manor contains optional secrets.
+A useful external curriculum/reference is:
 
-Examples:
+**freeCodeCamp — Learn Linux for Beginners: From Basics to Advanced**  
+https://www.freecodecamp.org/news/learn-linux-for-beginners-book-basic-to-advanced/
 
-* Hidden files
-* Secret rooms
-* Lost journals
-* Forgotten letters
-* Hidden commands
+Use it to inform topic coverage and as optional student reading. Do **not** copy the article text into Terminal Explorer. Terminal Explorer should contain original explanations, scenarios, exercises, and story material.
 
-Examples:
-
-.hidden_letter
-.secret_passage
-.dracula_diary
-
-Secrets reward curiosity but are never required for progression.
+See `docs/LEARNING_RESOURCES.md`.
 
 ---
 
-# Difficulty Philosophy
+## English-first development
 
-Consequences exist.
+V2 curriculum development is English-first.
 
-Punishment does not.
+Existing Swedish, Spanish, and Arabic content may remain in the repository as historical/reference material, but new V2 content should not be multiplied across languages while the pedagogy is still changing.
 
-Mistakes should teach.
-
-Examples:
-
-* Overwriting a file with > teaches redirection.
-* Deleting a file teaches recovery.
-* Permissions teach security.
+Localization can resume after the English course and interaction model are stable and tested.
 
 ---
 
-# Languages
+## Student notes
 
-Supported languages:
+Personal notes are encouraged but should not become mandatory busywork.
 
-* English
-* Swedish
-* Spanish
-* Arabic
+A learner may keep files such as:
 
-Commands remain in English.
+```text
+backpack/
+├── commands.txt
+├── journal.txt
+├── discoveries.txt
+└── notes.txt
+```
 
-Story and lesson material are localized.
-
-Arabic support uses the optional ara renderer.
+As editing and redirection are introduced, the backpack can itself become a practice space.
 
 ---
 
-# Educational Goals
+## Secrets and Easter eggs
 
-By the end of the course students should:
+Optional discoveries are strongly encouraged because they naturally reinforce exploration:
 
-* Understand Linux fundamentals.
-* Navigate filesystems confidently.
-* Manage files and directories.
-* Search and filter information.
-* Understand permissions and processes.
-* Write Bash scripts.
-* Automate tasks.
-* Develop curiosity and problem-solving skills.
+- hidden files
+- hidden directories
+- old logs
+- forgotten letters
+- symbolic links
+- alternate paths
+- harmless Unix/Linux curiosities
 
-The true treasure of Blackthorn Manor is knowledge.
+Secrets must never be required to understand an ambiguous clue. They reward the learner for trying commands such as `ls -a`, `find`, and `grep` after those concepts have been introduced.
+
+---
+
+## Failure and recovery
+
+Incorrect actions should receive progressively lighter help.
+
+Early:
+
+```text
+That did not reveal the file.
+Remember: ls shows what is in the current directory.
+Try looking around first.
+```
+
+Later:
+
+```text
+Not quite. What command have you already learned for looking around?
+```
+
+Eventually:
+
+```text
+Try again.
+```
+
+Where practical, destructive lessons should operate on disposable course-owned material so recovery itself can become part of the lesson.
+
+---
+
+## Educational outcome
+
+By the end of Terminal Explorer, a learner should be able to:
+
+- navigate Linux filesystems confidently;
+- inspect and manipulate files and directories;
+- search and filter information;
+- understand users, groups, permissions, and processes;
+- compose commands with streams and pipes;
+- write useful Bash scripts;
+- perform basic Linux administration;
+- connect to and reason about remote systems;
+- troubleshoot common Linux problems methodically;
+- continue learning from documentation and conventional Linux resources without needing the game metaphor.
+
+The adventure is scaffolding. Linux competence is the destination.
