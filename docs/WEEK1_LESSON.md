@@ -1,120 +1,378 @@
-# Week 1 Lesson — How to Use Terminal Explorer
+# Week 1 Lesson — Navigation, Paths, and Command Structure
 
 ## Purpose
 
-Week 1 is designed to give complete beginners two mental models that make the rest of Linux easier to understand:
+Week 1 gives complete beginners the mental models that make later Linux commands easier to understand.
 
-1. The filesystem is a tree of folders and files.
-2. A terminal command has a structure: command + options + arguments.
+Students should leave Week 1 understanding:
 
-The goal is not to memorize many commands. The goal is to understand where you are, how locations relate to each other, and how to tell a command what you want it to do.
+1. The filesystem is a tree of directories and files.
+2. They are always located somewhere in that tree.
+3. Paths describe locations in different ways.
+4. A command line has a structure: command + options + arguments.
 
-Terminal Explorer uses Blackthorn Manor to make these ideas visible:
+The goal is not to memorize many commands. The goal is to learn how to orient yourself, read a path, choose a destination, and understand how a command is constructed.
+
+Blackthorn Manor makes the filesystem visible:
 
 - directories are rooms;
 - files are objects;
-- moving through directories is moving through the manor;
-- the terminal is how you interact with the world.
+- nested directories are rooms inside regions or other rooms;
+- symbolic links can act as portals;
+- the terminal is how the student interacts with the world.
 
-The game uses real Linux commands. There is no separate game command language to learn.
+The game uses real Linux commands. There is no separate game command language.
 
 ---
 
-## Part 1 — Start Week 1
+# Part 1 — Install and Enter Week 1
 
-From the Terminal Explorer repository, run:
+From the Terminal Explorer repository:
 
 ```bash
 ./install.sh
 ```
 
-Then enter Week 1:
+Enter the manor:
 
 ```bash
-cd ~/terminal-explorer/week1/mansion/entrance_hall
+cd ~/terminal-explorer/manor/ground_floor/entrance_hall
 cat clue.txt
 ```
 
-Students should read the room text before trying to solve it.
+Week 1 establishes the persistent manor. Later weeks extend this same directory tree rather than creating a separate world.
 
-The room descriptions give a situation and, early in the course, a direct hint. As students progress, the hints become less explicit.
+The full teacher map is documented in `docs/MANOR_MAP.md`.
 
-The puzzle is Linux. The prose should never be the puzzle.
+Students do not need the complete map at the beginning. Building a mental map through exploration is part of the exercise.
 
 ---
 
 # Part 2 — Mental Model One: The Filesystem Is a Tree
 
-Before teaching many commands, explain that Linux organizes files and folders in a hierarchy.
+The Week 1 manor contains enough depth and branching to require real navigation.
 
-A simple example:
+A simplified view is:
 
 ```text
-mansion/
-├── entrance_hall/
-├── kitchen/
-├── bedroom/
-└── library/
-    └── secret_passage/
-        └── vault/
+manor/
+├── ground_floor/
+│   ├── entrance_hall/
+│   │   └── cloakroom/
+│   ├── west_corridor/
+│   │   ├── kitchen/
+│   │   │   └── pantry/
+│   │   └── dining_room/
+│   └── east_corridor/
+│       ├── bedroom/
+│       │   └── dressing_room/
+│       └── library/
+│           ├── reading_room/
+│           ├── archives/
+│           │   ├── family_records/
+│           │   └── estate_records/
+│           └── secret_passage/
+│               └── old_staircase/
+│                   └── vault/
+├── upper_floor/
+│   ├── gallery/
+│   ├── guest_wing/
+│   └── observatory/
+└── underground/
+    ├── cellar/
+    └── old_tunnel/
 ```
 
-This is a tree.
-
-`mansion` is above the rooms beneath it.
-
-`library` contains `secret_passage`.
-
-`secret_passage` contains `vault`.
+This is a hierarchy.
 
 A directory can contain files and other directories.
 
-## Parent and child directories
+Students should learn relationships rather than memorizing strings:
 
-If you are here:
+- parent;
+- child;
+- sibling;
+- ancestor;
+- descendant.
+
+If the student is in:
 
 ```text
-mansion/library/secret_passage/
+manor/ground_floor/east_corridor/library/archives/
 ```
 
 then:
 
-- `secret_passage` is your current directory;
+- `archives` is the current directory;
 - `library` is its parent;
-- `vault` can be a child directory;
-- `bedroom` is elsewhere in the tree.
+- `family_records` is a child;
+- `estate_records` is another child and therefore a sibling of `family_records`;
+- `ground_floor` is an ancestor.
 
-The special path:
+---
+
+# Part 3 — The Four Navigation Landmarks
+
+Teach these four symbols together:
 
 ```text
-..
+.    here — the current directory
+..   one level up — the parent directory
+~    home — the current user's home directory
+/    root — the root of the entire filesystem
 ```
 
-means the parent directory.
+They are not interchangeable.
 
-So:
+## `.` — here
+
+`.` refers to the current directory.
+
+For example:
+
+```bash
+ls .
+```
+
+means:
+
+> List this directory.
+
+Students do not need to use `.` constantly, but they should recognize what it means when they encounter it.
+
+## `..` — parent
+
+`..` refers to the parent directory.
 
 ```bash
 cd ..
 ```
 
-means "move one level up the tree."
+means:
 
-Do not teach `..` as something students must memorize without meaning. Always connect it to the tree.
+> Move one level up the tree.
+
+Always connect `..` to the tree. Do not present it as punctuation to memorize.
+
+If the student is here:
+
+```text
+library/archives/
+```
+
+then:
+
+```bash
+cd ..
+```
+
+moves to:
+
+```text
+library/
+```
+
+## `~` — home
+
+`~` means the current user's home directory.
+
+For a user whose home is `/home/student`:
+
+```bash
+cd ~
+```
+
+moves to:
+
+```text
+/home/student
+```
+
+The best beginner explanation is:
+
+> `~` means "my home directory."
+
+Do not initially describe `~` as "go up". It is not related to the current depth in the tree.
+
+A useful demonstration is to move deep into the manor and then run:
+
+```bash
+cd ~
+pwd
+```
+
+Students can see that `~` jumps directly home regardless of how deep they were.
+
+Later, explain that the shell expands `~` to the user's home directory.
+
+## `/` — root
+
+`/` is the root of the whole filesystem.
+
+It is not the same as the user's home directory.
+
+A simplified Linux hierarchy might look like:
+
+```text
+/
+├── etc/
+├── home/
+│   └── student/    ← ~ for this student
+├── tmp/
+├── usr/
+└── var/
+```
+
+So:
+
+```bash
+cd /
+```
+
+means:
+
+> Go to the root of the entire filesystem.
+
+while:
+
+```bash
+cd ~
+```
+
+means:
+
+> Go to my personal home directory.
 
 ---
 
-## Ask three questions repeatedly
+# Part 4 — Absolute, Relative, and Home-Based Paths
+
+This is one of the main Week 1 concepts.
+
+Use the following classroom language.
+
+## Relative path = directions from here
+
+A relative path is interpreted from the current directory.
+
+Suppose the student is in:
+
+```text
+manor/ground_floor/east_corridor/library/
+```
+
+and wants to reach:
+
+```text
+manor/ground_floor/west_corridor/kitchen/
+```
+
+A relative route could be:
+
+```bash
+cd ../../west_corridor/kitchen
+```
+
+Read it from left to right:
+
+```text
+..              library → east_corridor
+..              east_corridor → ground_floor
+west_corridor   enter west_corridor
+kitchen         enter kitchen
+```
+
+Classroom analogy:
+
+> Relative path = directions from where I am standing.
+
+A relative path can mean something different when the starting location changes.
+
+That is the key property students should understand.
+
+---
+
+## Absolute path = full address
+
+An absolute path begins with `/`.
+
+Example:
+
+```text
+/home/student/terminal-explorer-game/manor/ground_floor/west_corridor/kitchen
+```
+
+Classroom analogy:
+
+> Absolute path = the complete address.
+
+It does not depend on the current directory.
+
+The exact home portion differs between systems, so students should discover their own path with `pwd` rather than memorize an example.
+
+A useful exercise is:
+
+1. Navigate to the kitchen.
+2. Run `pwd`.
+3. Copy or read the complete path.
+4. Move somewhere else.
+5. Use the complete path with `cd` to return directly to the kitchen.
+
+Ask:
+
+> Did the full address change because we started somewhere else?
+
+No.
+
+---
+
+## Home-based path = directions from home
+
+For beginner teaching, treat a path beginning with `~` as a third useful form:
+
+```bash
+cd ~/terminal-explorer/manor/ground_floor/west_corridor/kitchen
+```
+
+Classroom analogy:
+
+> Start at my home directory and follow these directions.
+
+This is easier to explain before introducing shell expansion details.
+
+Later, students can learn that the shell expands `~` to the user's home directory before running the command.
+
+---
+
+## The key comparison
+
+Use this table repeatedly:
+
+| Form | Example | Mental model |
+| --- | --- | --- |
+| Relative | `../../west_corridor/kitchen` | directions from here |
+| Absolute | `/home/student/.../kitchen` | complete address |
+| Home-based | `~/terminal-explorer/.../kitchen` | directions from home |
+
+The most important question is:
+
+> Which one depends on where I am now?
+
+The relative path does.
+
+---
+
+# Part 5 — Ask Three Questions Repeatedly
 
 Throughout Week 1, ask students:
 
-1. Where are you?
-2. What is inside this location?
-3. Where do you want to go next?
+1. **Where am I?**
+2. **What is here?**
+3. **Where do I want to go next?**
 
-Linux already gives us commands for answering those questions.
+Linux gives us direct tools for those questions.
 
-### Where am I?
+## Where am I?
 
 ```bash
 pwd
@@ -122,53 +380,45 @@ pwd
 
 `pwd` prints the current working directory.
 
-Example:
+Encourage students to read the path as a sequence of tree levels separated by `/`.
 
-```text
-/home/student/terminal-explorer-game/week1/mansion/library
-```
-
-Read the path from left to right. Each `/` separates one level of the tree from the next.
-
-### What is here?
+## What is here?
 
 ```bash
 ls
 ```
 
-`ls` lists the contents of a directory.
+`ls` lists directory contents.
 
-### Move somewhere else
+To include hidden entries:
 
 ```bash
-cd kitchen
+ls -a
 ```
 
-`cd` changes the current directory.
+## Where do I want to go next?
 
-The word after `cd` tells it where to go.
+```bash
+cd PATH
+```
 
-That leads directly into the second mental model.
+The path passed to `cd` can be relative, absolute, or home-based.
 
 ---
 
-# Part 3 — Mental Model Two: Commands Have a Structure
+# Part 6 — Mental Model Two: Commands Have Structure
 
-Students should not think of terminal commands as magic phrases.
+Students should not treat commands as magic phrases.
 
-Most command lines can be understood using this general pattern:
+Use this general model:
 
 ```text
 command [options] [arguments]
 ```
 
-Use real Linux vocabulary from the beginning.
+Use real Linux vocabulary.
 
-Do not rename commands as spells, flags as modifiers, or arguments as targets. The story can remain atmospheric, but the technical words should be the words students will see in documentation and real Linux systems.
-
----
-
-## Example 1 — A command with no argument
+## Command only
 
 ```bash
 pwd
@@ -179,13 +429,7 @@ COMMAND
 pwd
 ```
 
-`pwd` is the command.
-
-It does not need an argument for this basic use.
-
----
-
-## Example 2 — A command with one argument
+## Command + argument
 
 ```bash
 cd library
@@ -196,9 +440,6 @@ COMMAND    ARGUMENT
 cd         library
 ```
 
-- `cd` is the command.
-- `library` is the argument.
-
 The argument tells `cd` where to go.
 
 Another example:
@@ -207,16 +448,9 @@ Another example:
 cat clue.txt
 ```
 
-```text
-COMMAND    ARGUMENT
-cat        clue.txt
-```
+The argument tells `cat` which file to display.
 
-The argument tells `cat` which file to read.
-
----
-
-## Example 3 — A command with an option
+## Command + option
 
 ```bash
 ls -a
@@ -227,18 +461,9 @@ COMMAND    OPTION
 ls         -a
 ```
 
-- `ls` is the command.
-- `-a` is an option, often called a flag.
+The option changes the behavior of `ls`.
 
-The option changes how the command behaves.
-
-In this case, `-a` tells `ls` to include hidden entries.
-
-This is useful in Blackthorn Manor because some secrets begin with a dot.
-
----
-
-## Example 4 — Command + option + argument
+## Command + option + argument
 
 ```bash
 ls -a library
@@ -249,128 +474,62 @@ COMMAND    OPTION    ARGUMENT
 ls         -a        library
 ```
 
-This can be read as:
+Read it as:
 
 > Run `ls`, change its behavior with `-a`, and apply it to `library`.
 
-That sentence is more useful than memorizing the whole line as a single phrase.
+## Multiple arguments
 
----
+Some commands need more than one argument.
 
-## Example 5 — More than one argument
-
-Students should also understand early that some commands can take multiple arguments.
-
-For example:
+For example, Week 2 will use:
 
 ```bash
-cp letter.txt archive/
+cp blueprint.txt archive/
 ```
 
 ```text
-COMMAND    ARGUMENT 1    ARGUMENT 2
-cp         letter.txt    archive/
+COMMAND    ARGUMENT 1      ARGUMENT 2
+cp         blueprint.txt    archive/
 ```
 
-This can be read as:
-
-> Run `cp`. Copy `letter.txt` to `archive/`.
-
-Week 1 does not need to teach `cp` yet. This example is simply useful for showing that arguments are positional pieces of information passed to a command.
+This prepares students to understand source and destination rather than memorizing a whole command line.
 
 ---
 
-# Part 4 — Relative and Absolute Paths
+# Part 7 — Portals: Symbolic Links as Navigation Shortcuts
 
-Once students understand the tree, introduce two ways to describe a location.
+Week 1 contains real symbolic links presented as portals.
 
-## Relative path
+Students are not expected to create them yet.
 
-A relative path starts from where you are now.
+They should first experience the idea:
 
-If you are in:
+> A portal gives another path to a location elsewhere in the hierarchy.
 
-```text
-mansion/
-```
+One portal connects the observatory to an underground tunnel. Another provides a shortcut near the library.
 
-then:
+Students can inspect portals later with commands such as `ls -l` when symbolic links are formally taught.
+
+The important early idea is:
+
+> The filesystem hierarchy has a tree-like structure, but links can provide alternate routes through it.
+
+Later, `ln -s` will let students build their own portals.
+
+---
+
+# Part 8 — Suggested Classroom Demonstration
+
+Use a projected terminal and a simplified map.
+
+Start here:
 
 ```bash
-cd library
+cd ~/terminal-explorer/manor/ground_floor/entrance_hall
 ```
 
-means "enter the `library` directory from here."
-
-If you are in:
-
-```text
-mansion/library/
-```
-
-then:
-
-```bash
-cd secret_passage
-```
-
-moves into its child directory.
-
-## Absolute path
-
-An absolute path describes a complete location from the filesystem root.
-
-Example:
-
-```text
-/home/student/terminal-explorer-game/week1/mansion/library
-```
-
-Students do not need to master the entire Linux filesystem hierarchy in Week 1. They only need to understand the difference:
-
-- relative path = location described from where I am;
-- absolute path = complete location.
-
----
-
-# Part 5 — How to Play Week 1
-
-Week 1 should be played as an exploration exercise rather than a worksheet.
-
-For each room:
-
-1. Read the room's `clue.txt` or other visible text file.
-2. Ask: **Where am I?**
-3. Use `pwd` when necessary.
-4. Ask: **What is here?**
-5. Use `ls` to inspect the current directory.
-6. Read interesting text files with `cat`.
-7. Move through directories using `cd`.
-8. Use `cd ..` when you need to move to the parent directory.
-9. If the room suggests something may be hidden, consider `ls -a`.
-10. Continue until you reach the vault and recover the Week 1 completion key.
-
-Students are encouraged to experiment. A wrong `cd` or an unhelpful `ls` is not failure. The point is to form a mental picture of the filesystem by interacting with it.
-
----
-
-# Part 6 — Suggested Classroom Demonstration
-
-A useful way to introduce Week 1 is to draw the following tree on a whiteboard or screen:
-
-```text
-mansion/
-├── entrance_hall/
-├── kitchen/
-├── bedroom/
-└── library/
-    └── secret_passage/
-        └── vault/
-```
-
-Then open the terminal in `entrance_hall`.
-
-Ask the class:
+Ask:
 
 > Where are we?
 
@@ -380,9 +539,9 @@ Run:
 pwd
 ```
 
-Then ask:
+Then:
 
-> What can we see from here?
+> What is here?
 
 Run:
 
@@ -390,109 +549,126 @@ Run:
 ls
 ```
 
-Then move somewhere:
+Move to the parent:
 
 ```bash
 cd ..
 ```
 
-Show the tree again and ask what `..` just did.
+Ask students what changed in the tree.
 
-Then run:
+Then navigate to the library using a relative path.
+
+Once there, choose another destination and demonstrate all three path descriptions:
+
+1. relative;
+2. absolute discovered with `pwd`;
+3. home-based using `~`.
+
+Then move deep into the manor and demonstrate:
 
 ```bash
-cd library
+cd ~
+pwd
 ```
 
-Break the command apart:
+Ask:
+
+> Did `~` mean one level up?
+
+No. It meant the student's home directory.
+
+Finally compare:
 
 ```text
-cd library
-│  └──── argument: where to go
-└─────── command: what to do
+.    here
+..   parent
+~    home
+/    root
 ```
 
-Next run:
-
-```bash
-ls -a
-```
-
-Break it apart:
-
-```text
-ls -a
-│  └── option/flag: change how ls behaves
-└───── command: what to do
-```
-
-Finally combine the ideas:
-
-```bash
-ls -a secret_passage
-```
-
-Ask students to identify:
-
-- the command;
-- the option;
-- the argument.
-
-If they can explain those three pieces and point to their location in the filesystem tree, the foundation of Week 1 is working.
+If students can explain those four landmarks and distinguish full-address paths from directions-from-here, the navigation foundation is working.
 
 ---
 
-# Part 7 — Week 1 Commands
+# Part 9 — How to Play Week 1
 
-Students should become comfortable with these commands during the adventure:
+For each location:
+
+1. Read visible room text.
+2. Ask **Where am I?**
+3. Use `pwd` when uncertain.
+4. Ask **What is here?**
+5. Use `ls`.
+6. Read interesting files with `cat`.
+7. Move using `cd` and a chosen path.
+8. Use `cd ..` to move to a parent.
+9. Use `ls -a` when the room suggests something may be hidden.
+10. Experiment with relative, absolute, and home-based paths.
+11. Explore the portal shortcuts.
+12. Reach the vault and recover the Week 1 completion key.
+
+A wrong path is not failure. The goal is to form and correct a mental map by interacting with a real filesystem.
+
+---
+
+# Part 10 — Week 1 Commands and Symbols
+
+Students should become comfortable with:
 
 ```text
 pwd      show the current directory
 ls       list directory contents
-ls -a    also show hidden entries
+ls -a    include hidden entries
 cd       change directory
 cat      display a text file
 clear    clear the terminal display
-history  show previously entered commands
+history  show previous commands
 ```
 
-The important outcome is not remembering every definition perfectly.
-
-Students should be able to reason about unfamiliar examples using the two models:
+And recognize:
 
 ```text
-filesystem = tree
-command line = command + options + arguments
+.        current directory
+..       parent directory
+~        current user's home directory
+/        filesystem root and absolute-path starting point
 ```
 
 ---
 
-# Part 8 — What Students Should Understand Before Moving On
+# Part 11 — What Students Should Understand Before Moving On
 
 At the end of Week 1, a student should be able to explain in their own words:
 
-- what a directory is;
-- what a file is;
-- that directories can contain other directories;
-- what a filesystem tree represents;
+- that the filesystem is hierarchical;
+- what parent, child, and sibling directories are;
 - what a current working directory is;
-- what a parent directory is;
+- what `.` means;
 - what `..` means;
-- the difference between a relative and an absolute path at a basic level;
+- what `~` means;
+- what `/` means;
+- why `/` and `~` are different;
+- what a relative path is;
+- why a relative path depends on the current directory;
+- what an absolute path is;
+- why an absolute path begins at `/`;
+- what a home-based `~/...` path means;
 - what a command is;
 - what an argument is;
 - what an option or flag is;
 - how to identify those pieces in a simple command line;
-- how to use `pwd`, `ls`, `cd`, and `cat` to explore an unfamiliar directory structure.
+- how to use `pwd`, `ls`, `cd`, and `cat` to explore an unfamiliar directory tree;
+- that a symbolic link can provide an alternate path to another location.
 
-That understanding is more important than speed.
+Understanding is more important than speed.
 
 ---
 
 # Need More Explanation?
 
-Terminal Explorer is intentionally concise. Students who want a conventional explanation alongside the adventure can use the freeCodeCamp Linux handbook listed in `docs/LEARNING_RESOURCES.md`:
+Students can use the freeCodeCamp Linux handbook listed in `docs/LEARNING_RESOURCES.md` as a companion reference:
 
 https://www.freecodecamp.org/news/learn-linux-for-beginners-book-basic-to-advanced/
 
-Use the article as a companion reference, then return to Blackthorn Manor and try the concepts in a real terminal.
+Read a conventional explanation when needed, then return to Blackthorn Manor and test the concept in a real terminal.
