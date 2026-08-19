@@ -50,15 +50,15 @@ install_week() {
         return
     fi
 
-    if [ ! -x "$week_script" ]; then
-        echo "Week $week_number installer not found or not executable:"
+    if [ ! -f "$week_script" ]; then
+        echo "Week $week_number installer not found:"
         echo "$week_script"
         return
     fi
 
     echo
     echo "Installing Week $week_number..."
-    "$week_script" "$LANGUAGE"
+    bash "$week_script" "$LANGUAGE"
 
     touch "$marker_file"
     echo "Week $week_number installed."
