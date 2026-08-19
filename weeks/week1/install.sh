@@ -45,6 +45,7 @@ mkdir -p "$WEEK_DIR"
 # Week 1 establishes the persistent manor. Do not destroy an existing manor,
 # because later weeks and student work extend this same filesystem world.
 mkdir -p "$MANOR/ground_floor/entrance_hall/cloakroom"
+mkdir -p "$MANOR/ground_floor/entrance_hall/terminal_study"
 mkdir -p "$MANOR/ground_floor/west_corridor/kitchen/pantry"
 mkdir -p "$MANOR/ground_floor/west_corridor/dining_room"
 mkdir -p "$MANOR/ground_floor/east_corridor/bedroom/dressing_room"
@@ -101,6 +102,44 @@ An absolute path is a complete address beginning at /.
 A path beginning with ~ starts from your home directory.
 
 The same room can be reached using different path descriptions.
+EOF
+
+cat > "$MANOR/ground_floor/entrance_hall/terminal_study/terminal_note.txt" <<'EOF'
+THE TERMINAL STUDY
+
+The terminal is not a memory contest.
+
+TAB COMPLETION
+Type part of a real path and press Tab. The shell can often complete the rest.
+Try navigating from the entrance hall by typing part of a nearby directory name and pressing Tab.
+
+COMMAND HISTORY
+The Up Arrow usually recalls a previous command.
+The history command shows commands you have already entered.
+
+SPACES
+The shell normally uses spaces to separate words.
+
+    cd east corridor
+
+is read as a command followed by two separate arguments: east and corridor.
+A name containing a space can be kept together with quotes, for example:
+
+    cd "east corridor"
+
+Terminal Explorer avoids spaces in required beginner paths so quoting does not become an accidental obstacle.
+
+CASE
+Linux names in this environment are case-sensitive.
+
+    library
+    Library
+    LIBRARY
+
+can be different names.
+
+THE PROMPT
+The prompt shows that the shell is ready for a command. Do not copy the prompt itself from examples.
 EOF
 
 # Real symbolic links act as portals. Students use them before learning to
