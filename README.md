@@ -1,75 +1,97 @@
 # Terminal Explorer
 
-Learn Linux through guided quests, challenges, and automation projects.
+**An old-school text adventure played entirely through real Linux commands.**
 
-Terminal Explorer is a story-driven Linux course where students explore **Blackthorn Manor**, an ancient estate connected to the mysterious **Terminal Realm**.
+Terminal Explorer teaches Linux by turning the filesystem into **Blackthorn Manor**.
 
-Instead of learning Linux commands in isolation, students learn by solving puzzles, uncovering secrets, and managing a growing estate.
+You do not type fake adventure commands such as `GO NORTH` or `TAKE KEY`.
 
----
+You use Linux itself:
 
-# Features
+- `pwd` to find where you are
+- `ls` to look around
+- `cd` to move between rooms
+- `cat` to read objects and notes
+- `grep` and `find` to investigate the manor
+- permissions, processes, pipes, scripts, SSH, and other Linux concepts as the adventure expands
 
-* Story-driven learning
-* Gamified Linux challenges
-* Multi-language support
-
-  * English
-  * Swedish
-  * Spanish
-  * Arabic
-* GitHub Codespaces compatible
-* Beginner-friendly
-* Progress tracking
-* Bash scripting projects
-* Hidden lore and Easter eggs
+The world is the filesystem. The filesystem is the world.
 
 ---
 
-# Target Audience
+## Design philosophy
 
-Terminal Explorer is designed for:
+Terminal Explorer borrows the atmosphere of classic text adventures while remaining a real Linux learning environment.
 
-* Complete beginners
-* Students with no Linux experience
-* Self-learners
-* Curious explorers
+The central rule is:
 
-Recommended age:
+> **The puzzle is Linux. The prose should never be the puzzle.**
 
-**18+**
+A room should give the learner just enough information to understand the situation, then invite an action.
 
-No prior programming knowledge is required.
+Early encounters provide direct hints. Later encounters provide less help and expect the learner to reuse commands they already know.
 
----
+Typical progression:
 
-# Course Structure
+1. **Orient** — Where am I?
+2. **Observe** — What is here?
+3. **Act** — What Linux command can change or inspect the situation?
+4. **Feedback** — What happened?
+5. **Discover** — What did I learn?
 
-| Week | Theme                     | Topics                     |
-| ---- | ------------------------- | -------------------------- |
-| 1    | The Mystery Mansion       | Navigation and exploration |
-| 2    | Restoration of the Estate | Files and directories      |
-| 3    | The Great Archives        | Search and discovery       |
-| 4    | Stewardship and Security  | Processes and permissions  |
-| 5    | Automation of the Estate  | Bash scripting             |
+Mistakes are part of the course.
 
----
+**Consequences exist. Punishment does not.**
 
-# Learning Objectives
-
-By the end of the course students should be able to:
-
-* Navigate Linux filesystems
-* Create and manage files
-* Search and filter information
-* Understand permissions and processes
-* Write Bash scripts
-* Automate repetitive tasks
-* Maintain their own Linux environment
+Optional secrets reward curiosity but never block required progress.
 
 ---
 
-# Quick Start
+## Blackthorn Manor
+
+Inside the Terminal Realm:
+
+| Linux concept | Manor equivalent |
+| --- | --- |
+| Directory | Room |
+| File | Object |
+| Hidden file | Secret |
+| Permission | Lock |
+| Process | Spirit |
+| User | Resident |
+| Group | Faction |
+| Symbolic link | Portal |
+
+These metaphors support learning, but Linux terminology always remains visible. The learner should finish Terminal Explorer knowing Linux, not a replacement vocabulary.
+
+---
+
+## Current development focus
+
+Terminal Explorer V2 is being developed **English-first** while the curriculum and interaction model stabilize.
+
+Older translation material may remain in the repository for reference, but new course work should target English first. Localization can return once the English course is coherent and tested.
+
+The course is organized as areas/chapters rather than assuming every learner follows the same weekly schedule.
+
+Planned progression:
+
+1. **Arrival — Finding Your Bearings**: `pwd`, `ls`, `cd`, paths, `clear`, `history`
+2. **The Manor — Files and Rooms**: `mkdir`, `touch`, `cp`, `mv`, `rm`
+3. **The Library — Reading Information**: `cat`, `less`, `head`, `tail`, file types
+4. **The Archives — Finding Things**: `find`, `grep`, wildcards, pipes
+5. **The Workshop — Editing**: text editing and safe file changes
+6. **The Locked Wing — Users and Permissions**: users, groups, ownership, `chmod`
+7. **The Engine Room — Processes**: `ps`, `top`, jobs, `kill`, services
+8. **The Messenger Tower — Streams and Pipes**: stdin, stdout, stderr, redirection, `|`
+9. **The Automaton Workshop — Bash**: variables, scripts, arguments, conditionals, loops
+10. **The Steward's Office — Administration**: packages, `sudo`, system inspection
+11. **The Observatory — Networking and SSH**: connectivity, addresses, SSH, remote systems
+12. **The Broken Manor — Troubleshooting**: logs, storage, memory, processes, diagnosis
+
+---
+
+## Quick start
 
 Clone the repository:
 
@@ -84,141 +106,71 @@ Run the installer:
 ./install.sh
 ```
 
-The installer will:
-
-* Ask for your preferred language
-* Install available weeks
-* Save your progress
-* Prepare your learning environment
-
-Start Week 1:
+Then begin the adventure:
 
 ```bash
-cd ~/terminal-explorer/week1
-cat README.txt
+cd ~/terminal-explorer/week1/mansion/entrance_hall
+cat clue.txt
 ```
 
-Arabic-speaking students may prefer opening files in VS Code:
-
-```bash
-code README.txt
-```
+The current installer uses English during the V2 rework.
 
 ---
 
-# Progress Tracking
+## Learning reference
 
-Terminal Explorer stores progress using hidden files:
+Terminal Explorer keeps its in-game explanations intentionally concise. If you want a conventional Linux explanation alongside the adventure, see:
 
-```text
-~/terminal-explorer/
-```
+**freeCodeCamp — Learn Linux for Beginners: From Basics to Advanced**  
+https://www.freecodecamp.org/news/learn-linux-for-beginners-book-basic-to-advanced/
 
-Examples:
+Terminal Explorer uses external learning resources as references; it does not copy their article text into the game.
 
-```text
-.installed-week1
-.week1-complete
-language.txt
-```
-
-Hint:
-
-```bash
-ls -a
-```
+More resources are listed in [`docs/LEARNING_RESOURCES.md`](docs/LEARNING_RESOURCES.md).
 
 ---
 
-# Student Journal
-
-Students are encouraged to maintain their own journal:
-
-```text
-backpack/
-├── spellbook.txt
-├── achievements.txt
-├── lore.txt
-├── discoveries.txt
-└── notes.txt
-```
-
-The journal belongs to the student.
-
-The course does not automatically manage it.
-
-Knowledge earned is knowledge kept.
-
----
-
-# Repository Structure
+## Repository structure
 
 ```text
 terminal-explorer/
 ├── install.sh
 ├── README.md
-├── bin/
 ├── docs/
 ├── lessons/
 ├── locales/
 └── weeks/
 ```
 
-## Directory Overview
-
-* `install.sh` — Main course installer
-* `docs/` — Design documents and story lore
-* `lessons/` — Educational material
-* `locales/` — Translated game text
-* `weeks/` — Weekly challenge installers
-* `bin/` — Optional helper tools
+- `install.sh` — prepares the playable learning environment
+- `docs/` — course design, story, and learning references
+- `lessons/` — supporting educational material
+- `locales/` — existing localized text from the original design
+- `weeks/` — current installation/game-content structure; expected to evolve toward chapters/areas
 
 ---
 
-# Documentation
+## Documentation
 
-* `docs/COURSE_DESIGN.md`
-* `docs/STORY.md`
-
-These documents define the architecture and lore of Blackthorn Manor.
-
----
-
-# GitHub Codespaces
-
-Terminal Explorer is designed to run entirely in GitHub Codespaces during the beginner phase.
-
-Students can later transition to:
-
-* Virtual machines
-* Raspberry Pi
-* Personal Linux servers
-* Native Linux installations
+- [`docs/COURSE_DESIGN.md`](docs/COURSE_DESIGN.md)
+- [`docs/STORY.md`](docs/STORY.md)
+- [`docs/LEARNING_RESOURCES.md`](docs/LEARNING_RESOURCES.md)
 
 ---
 
-# The World of Blackthorn Manor
+## Environment
 
-Blackthorn Manor exists in two worlds:
+Terminal Explorer is designed to work in GitHub Codespaces during the beginner phase and can later transition learners to:
 
-1. The physical world
-2. The Terminal Realm
+- virtual machines
+- Raspberry Pi
+- personal Linux servers
+- native Linux installations
 
-Within the Terminal Realm:
-
-* Directories become rooms
-* Files become objects
-* Processes become spirits
-* Permissions become locks
-* Users become residents
-* Groups become factions
-
-The true treasure of Blackthorn Manor is knowledge.
+The goal is not to simulate Linux. It is to let students safely learn by using Linux.
 
 ---
 
-# License
+## Motto
 
-Educational use encouraged.
-
-Explore wisely, steward.
+> **Explore the world. Learn the system. The system is the world.**
