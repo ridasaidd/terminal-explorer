@@ -1,0 +1,12 @@
+WEEK 2 INSTALLED — RESTORATION OF THE ESTATE
+
+The manor is ready for restoration.
+
+Begin here:
+
+cd ~/terminal-explorer/week2/manor/steward_office
+cat clue.txt
+
+Remember:
+
+OBSERVE → PREDICT → CHANGE → VERIFY
