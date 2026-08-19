@@ -12,6 +12,13 @@ fi
 
 GAME_LINK="$HOME/terminal-explorer"
 LANGUAGE="en"
+REQUESTED_WEEK="${1:-1}"
+
+if ! [[ "$REQUESTED_WEEK" =~ ^[0-9]+$ ]] || [ "$REQUESTED_WEEK" -lt 1 ]; then
+    echo "Usage: ./install.sh [week-number]"
+    echo "Example: ./install.sh 2"
+    exit 1
+fi
 
 mkdir -p "$GAME_DIR"
 ln -sfn "$GAME_DIR" "$GAME_LINK"
@@ -46,26 +53,30 @@ install_week() {
     local marker_file="$GAME_DIR/.installed-week${week_number}"
 
     if [ -f "$marker_file" ]; then
-        echo "Week $week_number already installed. Skipping."
+        echo "Week $week_number already installed."
         return
     fi
 
     if [ ! -f "$week_script" ]; then
         echo "Week $week_number installer not found:"
         echo "$week_script"
-        return
+        exit 1
+    fi
+
+    if [ "$week_number" -gt 1 ] && [ ! -f "$GAME_DIR/.installed-week$((week_number - 1))" ]; then
+        echo "Install and complete the earlier week before extending the manor."
+        echo "Run: ./install.sh $((week_number - 1))"
+        exit 1
     fi
 
     echo
     echo "Installing Week $week_number..."
     bash "$week_script" "$LANGUAGE"
-
     touch "$marker_file"
     echo "Week $week_number installed."
 }
 
-install_week 1
-install_week 2
+install_week "$REQUESTED_WEEK"
 
 echo
 echo "======================================"
@@ -73,14 +84,21 @@ echo " TERMINAL EXPLORER"
 echo "======================================"
 echo
 echo "Blackthorn Manor is ready."
+echo "Active course language: English."
 echo
-echo "For the V2 rework, the active course language is English."
-echo
-echo "Start with Week 1:"
-echo "cd ~/terminal-explorer/week1/mansion/entrance_hall"
-echo "cat clue.txt"
-echo
-echo "After Week 1, begin Week 2 here:"
-echo "cd ~/terminal-explorer/week2/manor/steward_office"
-echo "cat clue.txt"
+
+if [ "$REQUESTED_WEEK" -eq 1 ]; then
+    echo "Begin Week 1 here:"
+    echo "cd ~/terminal-explorer/manor/ground_floor/entrance_hall"
+    echo "cat clue.txt"
+    echo
+    echo "When it is time to extend the manor for Week 2:"
+    echo "./install.sh 2"
+elif [ "$REQUESTED_WEEK" -eq 2 ]; then
+    echo "The service wing and restoration zone are now open."
+    echo "Begin Week 2 here:"
+    echo "cd ~/terminal-explorer/manor/service_wing/steward_office"
+    echo "cat clue.txt"
+fi
+
 echo
