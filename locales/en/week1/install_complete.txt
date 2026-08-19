@@ -1,11 +1,13 @@
-CHAPTER 1 INSTALLED
+WEEK 1 INSTALLED — ARRIVAL
 
 Blackthorn Manor is ready.
 
 Enter the first room:
 
-cd ~/terminal-explorer/week1/mansion/entrance_hall
+cd ~/terminal-explorer/manor/ground_floor/entrance_hall
 
 Then read what you find there:
 
 cat clue.txt
+
+The manor will remain in place and later weeks will extend it.
