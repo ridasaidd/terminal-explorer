@@ -48,6 +48,7 @@ mkdir -p "$MANOR/service_wing/steward_office"
 mkdir -p "$MANOR/service_wing/workshop"
 mkdir -p "$MANOR/service_wing/storage"
 mkdir -p "$MANOR/service_wing/archive"
+mkdir -p "$MANOR/service_wing/training_room/sandbox"
 mkdir -p "$MANOR/ground_floor/east_corridor/restoration_zone/rubble"
 
 cp "$LOCALE_DIR/README.txt" "$WEEK_DIR/README.txt"
@@ -59,6 +60,41 @@ cp "$LOCALE_DIR/workshop.txt" "$MANOR/service_wing/workshop/clue.txt"
 cp "$LOCALE_DIR/east_wing.txt" "$MANOR/ground_floor/east_corridor/restoration_zone/clue.txt"
 cp "$LOCALE_DIR/archive.txt" "$MANOR/service_wing/archive/clue.txt"
 cp "$LOCALE_DIR/storage.txt" "$MANOR/service_wing/storage/clue.txt"
+
+cat > "$MANOR/service_wing/training_room/practice_note.txt" <<'EOF'
+THE TRAINING ROOM
+
+This room is disposable practice space. Use the sandbox/ directory for experiments.
+
+1. Inspect the room with:
+
+   ls -l
+
+For now, read only the first character:
+
+   d  directory
+   -  regular file
+
+The rest of the permission string belongs to a later lesson.
+
+2. A command can have several arguments. Inside sandbox/, try creating several empty files with one command:
+
+   touch chair.txt table.txt lamp.txt
+
+3. Once plain mkdir makes sense, try an option with a path:
+
+   mkdir -p guest_room/storage
+
+Read it as:
+
+   command:  mkdir
+   option:   -p
+   argument: guest_room/storage
+
+4. Verify every change with ls or ls -l.
+
+Recursive deletion is NOT part of this practice room. Do not use rm -r or rm -rf here as a shortcut.
+EOF
 
 # Seed exercise objects only when absent so reinstalling later does not erase
 # student work.
