@@ -1,0 +1,16 @@
+BLACKTHORN MANOR — STORAGE
+
+Crates and repaired fixtures are arranged along the walls.
+
+Inspect the room.
+
+The damaged lamp should no longer be in the workshop.
+It should be here under its new name:
+
+repaired_lamp.txt
+
+If that is true, you have used mv to both change location and rename an entry in the filesystem tree.
+
+When the restoration tasks are complete, return to the Week 2 directory and run:
+
+./verify.sh
