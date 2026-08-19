@@ -1,0 +1,32 @@
+BLACKTHORN MANOR — WORKSHOP
+
+The workshop smells of oil and old brass.
+Three items need your attention:
+
+blueprint.txt
+broken_lamp.txt
+obsolete_note.txt
+
+The blueprint must be preserved in the archive.
+Do not remove the original.
+
+Copy it.
+
+Hint:
+cp uses a source and a destination.
+
+Afterward, confirm that blueprint.txt exists in BOTH the workshop and the archive.
+
+The broken lamp belongs in storage, but its repaired condition should be reflected in its name.
+Move it to storage and rename it:
+
+repaired_lamp.txt
+
+Remember: mv also uses a source and destination. The destination may include a new filename.
+
+The obsolete note is no longer true.
+Remove it.
+
+Before using rm, look at the filename carefully and make sure you are in the location you expect.
+
+When all three jobs are done, inspect the east wing again.
