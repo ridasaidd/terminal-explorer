@@ -9,7 +9,7 @@ else
 fi
 
 WEEK_DIR="$GAME_DIR/week2"
-MANOR="$WEEK_DIR/manor"
+MANOR="$GAME_DIR/manor"
 
 fail=0
 
@@ -39,14 +39,14 @@ echo
 echo "WEEK 2 — RESTORATION CHECK"
 echo
 
-check_exists "$MANOR/east_wing/restored_room" "restored_room directory exists"
-check_exists "$MANOR/east_wing/restored_room/inventory.txt" "inventory.txt exists in restored_room"
-check_exists "$MANOR/workshop/blueprint.txt" "original blueprint remains in workshop"
-check_exists "$MANOR/archive/blueprint.txt" "blueprint was copied to archive"
-check_absent "$MANOR/workshop/broken_lamp.txt" "broken_lamp.txt moved out of workshop"
-check_exists "$MANOR/storage/repaired_lamp.txt" "lamp moved and renamed in storage"
-check_absent "$MANOR/workshop/obsolete_note.txt" "obsolete note removed"
-check_absent "$MANOR/east_wing/rubble" "empty rubble directory removed"
+check_exists "$MANOR/ground_floor/east_corridor/restoration_zone/restored_room" "restored_room directory exists"
+check_exists "$MANOR/ground_floor/east_corridor/restoration_zone/restored_room/inventory.txt" "inventory.txt exists in restored_room"
+check_exists "$MANOR/service_wing/workshop/blueprint.txt" "original blueprint remains in workshop"
+check_exists "$MANOR/service_wing/archive/blueprint.txt" "blueprint was copied to archive"
+check_absent "$MANOR/service_wing/workshop/broken_lamp.txt" "broken_lamp.txt moved out of workshop"
+check_exists "$MANOR/service_wing/storage/repaired_lamp.txt" "lamp moved and renamed in storage"
+check_absent "$MANOR/service_wing/workshop/obsolete_note.txt" "obsolete note removed"
+check_absent "$MANOR/ground_floor/east_corridor/restoration_zone/rubble" "empty rubble directory removed"
 
 if [ "$fail" -ne 0 ]; then
     echo
