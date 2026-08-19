@@ -1,0 +1,20 @@
+BLACKTHORN MANOR — ENTRANCE HALL
+
+You stand beneath a cracked chandelier in a silent entrance hall.
+A terminal glows on a small desk beside the door.
+
+You have arrived, but before you explore, you need to know exactly where you are.
+
+Find your current location.
+
+Try: pwd
+
+Then look around and see what the manor contains.
+
+Try: ls
+
+When you are ready, move out of the entrance hall and explore another room.
+
+Hint: cd changes your current directory.
+
+You can always return here later.
